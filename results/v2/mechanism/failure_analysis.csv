@@ -1,0 +1,10 @@
+failure_type,label,A_count,B_count,C_count,A_pct,B_pct,C_pct
+F1,wrong-responsibility exec (structurally B/C only),0,130,111,0.0,52.0,44.4
+F2,retrieval failure (fact missing from agent1),195,191,203,78.0,76.4,81.2
+F3,solve-stage answer wrong,124,116,129,49.6,46.4,51.6
+F4,verification-stage failure,122,119,125,48.8,47.6,50.0
+F5,handoff info-loss,57,88,71,22.8,35.2,28.4
+F6,redundant/repeated work (overlap>=0.6),181,149,156,72.4,59.6,62.4
+F7,out-of-scope tool use (structurally B/C only),0,82,77,0.0,32.8,30.8
+F8,inter-agent correction (final != solve),92,94,97,36.8,37.6,38.8
+F9,final answer incorrect,122,119,125,48.8,47.6,50.0

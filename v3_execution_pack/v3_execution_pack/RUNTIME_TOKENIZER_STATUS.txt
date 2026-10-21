@@ -1,0 +1,21 @@
+RUNTIME TOKENIZER STATUS — 2026-10-19
+
+Attempted command:
+  python build_and_count_prompts.py --model qwen2.5:7b --tolerance 0.01
+
+Result: BLOCKED. Connection refused at http://localhost:11434/api/chat.
+
+Interpretation:
+- The Ollama runtime is not reachable in this execution environment.
+- No new runtime token counts were produced.
+- No C1/C2 prompts were declared length-matched or behaviorally neutral.
+- The script and candidate filler families are prepared for execution on the machine that hosts the exact Ollama runtime.
+
+Required runtime-side completion:
+1. Start Ollama on the experiment machine.
+2. Verify the exact model tag with `ollama list`.
+3. Run build_and_count_prompts.py with that exact tag.
+4. Review generated prompt files and counts; if the tolerance fails, report the mismatch rather than fragmenting sentences.
+5. Human-review and freeze prompts before any confirmatory run.
+
+This is a blocker report, not a successful tokenizer audit.

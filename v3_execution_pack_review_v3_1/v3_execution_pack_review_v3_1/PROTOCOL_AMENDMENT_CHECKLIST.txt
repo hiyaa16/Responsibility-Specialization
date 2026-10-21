@@ -1,0 +1,16 @@
+PROTOCOL AMENDMENT CHECKLIST — COMPLETE BEFORE ANY NEW CONFIRMATORY RUN
+
+[ ] Mark new experiment/version ID and date; do not overwrite v2 preregistration.
+[ ] State primary model (Qwen) and classify Llama/Mistral as replications unless protocol is explicitly amended.
+[ ] Freeze A/B/C1/C2 full prompts and SHA-256 hashes.
+[ ] Define exact prompt-length target and tolerance per agent and per model-native tokenizer.
+[ ] Specify whether condition order is randomized; record execution_order in every row.
+[ ] Freeze tasks, gold answers, tool implementation, context limit, timeout, decoding options, and software/model versions.
+[ ] Predeclare primary outcome, analysis unit, omnibus test, pairwise contrasts, multiplicity correction, and equivalence margin.
+[ ] Define handling of truncation/timeouts/errors before examining outcomes; primary analysis must not silently drop them.
+[ ] Define filler-sensitivity comparison and what magnitude counts as materially different.
+[ ] Decide pilot size and operational acceptance criteria before pilot execution.
+[ ] Hash the preregistration, prompts, tasks, config and analysis code before confirmatory data collection.
+[ ] Preserve raw logs read-only and publish analysis scripts and all-run plus sensitivity results.
+
+STOP RULE: If the filler variants produce materially different outcomes, do not interpret one padded condition as a clean estimate of a pure prompt-length effect. Revise the design or narrow the causal claim.

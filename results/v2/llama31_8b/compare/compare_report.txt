@@ -1,0 +1,48 @@
+==========================================================================================
+CROSS-MODEL REPLICATION  —  Qwen-2.5-7B  vs  Llama-3.1-8B  (v2 study)
+==========================================================================================
+Qwen runs  = 750   (/Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/v2/runs.jsonl)
+Llama runs = 750   (/Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/v2/llama31_8b/runs_clean.jsonl)
+Statistics: task-level paired Wilcoxon, Holm across the 3 pairs per metric; effect size = matched-pairs rank-biserial; 95% bootstrap CI (all identical to mechanism_v2).
+
+CROSS-MODEL TABLE (A = generalist, C = specialized_length_matched; A-C is the key test)
+               metric     Qwen_A     Qwen_C  Qwen_A-C_meddiff  Qwen_A-C_holm    Llama_A    Llama_C  Llama_A-C_meddiff  Llama_A-C_holm                                                      A-C_replication
+             accuracy     0.5120     0.5000            0.0000       1.000000     0.4520     0.3920             0.0000        0.365000                    N/A (no significant Qwen A-C effect to replicate)
+     median_latency_s    24.8425    22.4175           -5.3821       0.000374    47.2550    47.5665             0.5714        0.443267                   NOT REPLICATED (Llama n.s. and opposite direction)
+       mean_latency_s   113.6237    25.5494           -5.3821       0.000374    54.8722    58.4064             0.5714        0.443267                   NOT REPLICATED (Llama n.s. and opposite direction)
+        p95_latency_s   633.8694    50.8568           -5.3821       0.000374   104.0080   134.1980             0.5714        0.443267                   NOT REPLICATED (Llama n.s. and opposite direction)
+         total_tokens 16366.9320 14456.0040          -53.8000       0.356202 24289.5640 28391.1760          3065.5000        0.000261                    N/A (no significant Qwen A-C effect to replicate)
+         input_tokens 15758.6440 13979.5800          -33.8000       0.357187 22811.5040 27009.2280          2929.5000        0.000107                    N/A (no significant Qwen A-C effect to replicate)
+        output_tokens   608.2880   476.4240          -83.3000       0.001734  1478.0600  1381.9480          -201.9000        0.232391 PARTIALLY REPLICATED (same direction, not Holm-significant on Llama)
+            llm_calls     7.2400     7.0800            0.0000       1.000000    10.7720    11.9480             1.1000        0.000020                    N/A (no significant Qwen A-C effect to replicate)
+           tool_calls     4.2400     4.0800            0.0000       1.000000     7.7720     8.9480             1.1000        0.000023                    N/A (no significant Qwen A-C effect to replicate)
+        repeated_work     0.7524     0.7119           -0.0570       0.292037     0.4385     0.3977            -0.0450        0.019576                    N/A (no significant Qwen A-C effect to replicate)
+          corrections     0.8880     1.0560            0.2000       0.018078     0.2560     0.3960             0.2000        0.028440                                                           REPLICATED
+first_handoff_overlap     0.5206     0.4154           -0.1065       0.001830     0.3174     0.2695            -0.0370        0.013461                                                           REPLICATED
+
+REPLICATION VERDICTS (A-vs-C, all paired metrics):
+  accuracy            Qwen A-C med=+0.000 holm=1 | Llama A-C med=+0.000 holm=0.365  ->  N/A (no significant Qwen A-C effect to replicate)
+  latency_seconds     Qwen A-C med=-5.382 holm=0.000374 | Llama A-C med=+0.571 holm=0.443  ->  NOT REPLICATED (Llama n.s. and opposite direction)
+  total_tokens        Qwen A-C med=-53.800 holm=0.356 | Llama A-C med=+3065.500 holm=0.000261  ->  N/A (no significant Qwen A-C effect to replicate)
+  input_tokens        Qwen A-C med=-33.800 holm=0.357 | Llama A-C med=+2929.500 holm=0.000107  ->  N/A (no significant Qwen A-C effect to replicate)
+  output_tokens       Qwen A-C med=-83.300 holm=0.00173 | Llama A-C med=-201.900 holm=0.232  ->  PARTIALLY REPLICATED (same direction, not Holm-significant on Llama)
+  llm_calls           Qwen A-C med=+0.000 holm=1 | Llama A-C med=+1.100 holm=2.05e-05  ->  N/A (no significant Qwen A-C effect to replicate)
+  tool_calls_total    Qwen A-C med=+0.000 holm=1 | Llama A-C med=+1.100 holm=2.26e-05  ->  N/A (no significant Qwen A-C effect to replicate)
+  repeated_work       Qwen A-C med=-0.057 holm=0.292 | Llama A-C med=-0.045 holm=0.0196  ->  N/A (no significant Qwen A-C effect to replicate)
+  corrections         Qwen A-C med=+0.200 holm=0.0181 | Llama A-C med=+0.200 holm=0.0284  ->  REPLICATED
+  ov_01               Qwen A-C med=-0.106 holm=0.00183 | Llama A-C med=-0.037 holm=0.0135  ->  REPLICATED
+  max_agent_input     Qwen A-C med=-171.300 holm=0.237 | Llama A-C med=+1549.500 holm=5.38e-05  ->  N/A (no significant Qwen A-C effect to replicate)
+
+LATENCY TAIL (per model):
+  Qwen: median A=24.8/B=21.2/C=22.4s | mean A=113.6/B=25.2/C=25.5s | >100s A=21.2%/B=0.0%/C=0.4%
+         shift A-C: primarily a TAIL shift
+  Llama: median A=47.3/B=42.5/C=47.6s | mean A=54.9/B=52.4/C=58.4s | >100s A=5.6%/B=10.0%/C=10.0%
+         shift A-C: no large shift of either kind
+
+LATENCY<->TOKEN ASSOCIATION (pooled Spearman):
+  Qwen: total_tokens rho=+0.82  input_tokens rho=+0.81
+  Llama: total_tokens rho=+0.83  input_tokens rho=+0.80
+
+INTERPRETATION RULES ENFORCED: verdicts are computed from the tests above. A-C 'REPLICATED' => the latency difference persisted after prompt-length matching on BOTH models. 'NOT REPLICATED' => the effect did not reproduce under Llama. 'MODEL-DEPENDENT' => direction reversed. No causal-reduction or context-size/token/tool/LLM-call reduction claim is made here; associations only.
+
+Outputs -> /Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/v2/llama31_8b/compare/  (cross_model_table.csv, replication.csv, per_model_metrics.csv, summary.json)

@@ -1,0 +1,16 @@
+HUMAN REVIEW CHECKLIST FOR C1/C2 FILLER
+
+For each candidate, inspect the actual assembled per-agent prompt, not only the standalone filler. Mark pass/fail and add notes.
+
+[ ] No imperative / instruction-like wording
+[ ] No task-domain facts, examples, numbers, or clues
+[ ] No agent-role terms (retrieval, solving, verification)
+[ ] No statements about how the model should interpret or ignore the filler
+[ ] No evaluative or persuasive language
+[ ] No incomplete sentence or fragment
+[ ] No accidental conflict with the main prompt
+[ ] Prompt is complete and formatting is preserved
+[ ] Exact runtime token count within predeclared tolerance
+[ ] SHA-256 recorded after final review
+
+Even all-pass does NOT prove neutrality. C1/C2 sensitivity must be analyzed as planned.

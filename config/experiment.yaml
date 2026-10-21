@@ -1,0 +1,40 @@
+# Experiment configuration — FROZEN before the confirmatory run (see preregistration.md)
+# The ONLY intentional difference between conditions is responsibility-block allocation
+# (see src/conditions.py). Every value below is shared by both conditions.
+
+model: "qwen2.5:7b"           # single fixed instruct model, held constant across conditions.
+                              # (Chosen over llama3:8b after the pilot showed floor effects.)
+                              # Swap freely: e.g. `ollama pull llama3.1:8b-instruct` then set
+                              # this to "llama3.1:8b-instruct". Nothing else changes.
+
+# Inference parameters — identical for every agent in both conditions
+temperature: 0.7              # >0 so 5 runs produce genuine variance; same for both conditions
+num_ctx: 8192                 # large enough that NEITHER condition truncates (asserted at runtime)
+num_predict: 1024             # max output tokens per agent turn
+top_p: 0.9
+seed_base: null               # seeds come from the `seeds` list below (one per run index)
+
+# Topology / protocol — constant across conditions
+agent_count: 3
+control_flow: "strict_linear" # A -> B -> C, exactly 2 handoffs, no loopback (v1)
+max_tool_iters: 4             # per agent; identical in both conditions
+
+# Reproducibility
+runs_per_task: 5
+seeds: [11, 22, 33, 44, 55]   # seeds[run_index]; documented & frozen
+
+# Ollama endpoint
+ollama_url: "http://localhost:11434/api/chat"
+request_timeout_s: 300
+
+# Paths
+tasks_path: "data/tasks.jsonl"
+runs_out: "results/runs.jsonl"
+sqlite_out: "results/experiments.sqlite"
+
+# Conditions to run
+conditions: ["generalist", "specialized"]
+
+# Pilot gate: if true, only run tasks tagged difficulty=="pilot" (or first N), few runs.
+pilot: false
+pilot_runs_per_task: 2

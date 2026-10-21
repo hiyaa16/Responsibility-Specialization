@@ -1,0 +1,26 @@
+V3 PRE-FREEZE AUDIT — REVIEW COPY (NOT FROZEN)
+
+Scope: source prompts, candidate filler generation, and available experiment logs.
+
+1. SOURCE PROMPT COMPARISON
+The four source prompt files in this pack are byte-for-byte identical to the same-named files in prompt_audit_bundle.zip.
+This establishes consistency with the prior prompt-audit bundle, NOT proof that the original V2 runtime executed those exact bytes.
+The available V2 JSONL run records retain role labels and token counts but do not retain the full system-prompt strings.
+Therefore exact original-B prompt identity remains UNVERIFIED from available evidence.
+
+2. FILLER / BOUNDARY REVIEW
+The source filler-family files are sentence-separated and do not contain the specific joined-word strings flagged in the pasted output.
+To reduce formatting ambiguity, this review copy changes candidate generation to put each appended filler sentence on a separate paragraph.
+This changes candidate prompt bytes and may change token counts; rerun the live Ollama count and re-review all generated prompts.
+Do not reuse the earlier token counts as counts for regenerated candidates.
+
+3. TOKEN MATCH STATUS FROM USER-REPORTED PRIOR RUN (NOT VALID FOR THIS MODIFIED SCRIPT)
+A target = 486; tolerance = +/-1%. C1 retrieve 488 PASS, C1 solve 490 PASS, C1 verify 486 PASS.
+C2 retrieve 486 PASS, C2 solve 489 PASS, C2 verify 492 FAIL. These values must be recalculated after regeneration.
+
+4. FREEZE STATUS
+NOT FROZEN. Do not run confirmatory trials yet.
+Remaining: rerun token count; review exact assembled prompts; resolve original B prompt identity or formally designate V3 as a new experiment; finalize task/gold files; record exact model/runtime versions; approve run order, outcome definitions, multiplicity plan and analysis code; then create a populated manifest with UTC timestamp and SHA-256 hashes.
+
+5. DESIGN INTERPRETATION
+C1/C2 token matching does not prove filler neutrality. A-vs-specialized comparisons change responsibility instructions and per-agent prompt organization. Interpret C1/C2 as length-matched sensitivity controls, not proof that prompt length or filler effects have been fully eliminated.

@@ -1,0 +1,10 @@
+condition,agent_index,role,input_tokens_mean,input_tokens_median,input_tokens_sum,output_tokens_mean,output_tokens_median,output_tokens_sum,agent_total_tokens_mean,agent_total_tokens_median,agent_total_tokens_sum,tool_iters_mean,tool_iters_median,tool_iters_sum,tool_calls_mean,tool_calls_median,tool_calls_sum
+generalist,0,generalist,9152.092,6682.5,2288023,258.9,218.0,64725,9410.992,6862.0,2352748,3.712,3.0,928,2.712,2.0,678
+generalist,1,generalist,3696.856,580.5,924214,183.34,73.0,45835,3880.196,659.5,970049,1.836,1.0,459,0.836,0.0,209
+generalist,2,generalist,2909.696,588.5,727424,166.048,71.0,41512,3075.744,667.5,768936,1.692,1.0,423,0.692,0.0,173
+specialized,0,retriever,7963.744,5168.0,1990936,245.432,203.0,61358,8209.176,5292.0,2052294,3.524,3.0,881,2.524,2.0,631
+specialized,1,solver,1693.524,412.0,423381,117.34,32.5,29335,1810.864,467.5,452716,1.444,1.0,361,0.444,0.0,111
+specialized,2,verifier,3564.104,2117.0,891026,195.936,148.5,48984,3760.04,2268.0,940010,2.144,2.0,536,1.144,1.0,286
+specialized_length_matched,0,retriever,8494.884,5719.5,2123721,211.424,168.5,52856,8706.308,5940.5,2176577,3.612,3.0,903,2.612,2.0,653
+specialized_length_matched,1,solver,1749.828,565.0,437457,102.176,24.0,25544,1852.004,599.0,463001,1.392,1.0,348,0.392,0.0,98
+specialized_length_matched,2,verifier,3734.868,1826.0,933717,162.824,99.5,40706,3897.692,1975.5,974423,2.076,2.0,519,1.076,1.0,269

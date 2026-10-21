@@ -1,0 +1,127 @@
+v2 analysis of 48 runs | conditions=['generalist', 'specialized', 'specialized_length_matched'] | dir=D:\internship2026\responsibility-specialization\results/v2_pilot
+==========================================================================
+PRIMARY: 3-condition task-level analysis (Friedman + pairwise Wilcoxon/Holm)
+==========================================================================
+
+[success]  n_tasks=8  conditions=['A', 'B', 'C']
+  A generalist                   mean=0.6875  median=1.0000
+  B specialized                  mean=0.6250  median=1.0000
+  C specialized_length_matched   mean=0.6875  median=1.0000
+  Friedman chi2=2.000  p=0.3679
+    A-B: median(2nd-1st)=+0.0000  rank-biserial=-1.000  95%CI[-0.1875,+0.0000]  p=1 adj=1 
+    B-C: median(2nd-1st)=+0.0000  rank-biserial=+1.000  95%CI[+0.0000,+0.1875]  p=1 adj=1 
+    A-C: median(2nd-1st)=+0.0000  rank-biserial=+0.000  95%CI[+0.0000,+0.0000]  p=1 adj=1 
+
+[total_tokens]  n_tasks=8  conditions=['A', 'B', 'C']
+  A generalist                   mean=14010.0625  median=9086.0000
+  B specialized                  mean=18183.1875  median=11116.7500
+  C specialized_length_matched   mean=12666.8750  median=12400.2500
+  Friedman chi2=0.000  p=1
+    A-B: median(2nd-1st)=-341.5000  rank-biserial=+0.056  95%CI[-4922.5859,+15785.0625]  p=0.9453 adj=1 
+    B-C: median(2nd-1st)=-432.7500  rank-biserial=-0.278  95%CI[-12642.0625,+668.9703]  p=0.5469 adj=1 
+    A-C: median(2nd-1st)=+377.0000  rank-biserial=-0.111  95%CI[-8148.7937,+5192.6859]  p=0.8438 adj=1 
+
+[output_tokens]  n_tasks=8  conditions=['A', 'B', 'C']
+  A generalist                   mean=552.3125  median=424.2500
+  B specialized                  mean=763.9375  median=668.2500
+  C specialized_length_matched   mean=409.6875  median=425.7500
+  Friedman chi2=3.000  p=0.2231
+    A-B: median(2nd-1st)=+67.2500  rank-biserial=+0.556  95%CI[+0.4875,+465.2500]  p=0.1953 adj=0.3906 
+    B-C: median(2nd-1st)=-291.5000  rank-biserial=-0.778  95%CI[-604.9000,-112.1219]  p=0.05469 adj=0.1641 
+    A-C: median(2nd-1st)=-59.7500  rank-biserial=-0.361  95%CI[-359.1250,+48.8750]  p=0.3984 adj=0.3984 
+
+[latency_seconds]  n_tasks=8  conditions=['A', 'B', 'C']
+  A generalist                   mean=370.2826  median=286.8007
+  B specialized                  mean=736.9916  median=830.4423
+  C specialized_length_matched   mean=354.9323  median=326.6145
+  Friedman chi2=6.750  p=0.03422
+    A-B: median(2nd-1st)=+305.1782  rank-biserial=+0.833  95%CI[+107.7944,+645.5636]  p=0.03906 adj=0.07812 
+    B-C: median(2nd-1st)=-544.6363  rank-biserial=-0.889  95%CI[-572.1800,-172.0436]  p=0.02344 adj=0.07031 
+    A-C: median(2nd-1st)=+26.8273  rank-biserial=+0.056  95%CI[-219.5407,+156.1431]  p=0.9453 adj=0.9453 
+
+==========================================================================
+RELIABILITY EQUIVALENCE (TOST, pre-registered margin +/-0.05)
+==========================================================================
+  A-B: mean diff=-0.0625  90%CI[-0.1809,+0.0559]  TOST p=0.5764  -> NOT shown equivalent (inconclusive)
+  B-C: mean diff=+0.0625  90%CI[-0.0559,+0.1809]  TOST p=0.5764  -> NOT shown equivalent (inconclusive)
+  A-C: mean diff=+0.0000  90%CI[-0.0000,+0.0000]  TOST p=1.69e-73  -> EQUIVALENT
+  NOTE: a non-significant difference is not proof of equivalence; only a passing TOST is.
+
+==========================================================================
+Overall per-condition summary (task-mean bootstrap 95% CI)
+==========================================================================
+
+[A generalist]  runs=16  timeouts=1  errors=1
+  success=0.688 (task-mean 95%CI 0.375-1.000)
+  mean total_tokens=14944  output_tokens=589  system_prompt_tokens=1353
+  mean latency=395.0s  median=299.8s  mean llm_calls=7.33
+
+[B specialized]  runs=16  timeouts=0  errors=0
+  success=0.625 (task-mean 95%CI 0.250-1.000)
+  mean total_tokens=18183  output_tokens=764  system_prompt_tokens=925
+  mean latency=737.0s  median=645.5s  mean llm_calls=8.12
+
+[C specialized_length_matched]  runs=16  timeouts=0  errors=0
+  success=0.688 (task-mean 95%CI 0.375-1.000)
+  mean total_tokens=12667  output_tokens=410  system_prompt_tokens=1354
+  mean latency=354.9s  median=351.4s  mean llm_calls=6.81
+
+--------------------------------------------------
+success by source x condition
+condition     generalist  specialized  specialized_length_matched
+source                                                           
+handauthored       0.750        0.500                       0.750
+hotpotqa           1.000        1.000                       1.000
+musique            0.333        0.333                       0.333
+
+--------------------------------------------------
+success by difficulty x condition
+condition   generalist  specialized  specialized_length_matched
+difficulty                                                     
+hard             0.786        0.714                       0.786
+medium           0.000        0.000                       0.000
+
+==========================================================================
+TOKEN DECOMPOSITION (critical question: does efficiency survive length control? B vs C)
+==========================================================================
+  system_prompt_tokens   A=1353  B=925  C=1354
+  input_tokens           A=14355  B=17419  C=12257
+  output_tokens          A=589  B=764  C=410
+  total_tokens           A=14944  B=18183  C=12667
+
+==========================================================================
+Failure-type frequency per condition (denominator = runs)
+==========================================================================
+
+[A generalist] (n=16)
+  F2: 10 (62.5%)
+  F3: 6 (37.5%)
+  F4: 4 (25.0%)
+  F5: 3 (18.8%)
+  F6: 10 (62.5%)
+  F8: 5 (31.2%)
+  F9: 5 (31.2%)
+
+[B specialized] (n=16)
+  F1: 6 (37.5%)
+  F2: 12 (75.0%)
+  F3: 7 (43.8%)
+  F4: 6 (37.5%)
+  F5: 6 (37.5%)
+  F6: 8 (50.0%)
+  F7: 9 (56.2%)
+  F8: 5 (31.2%)
+  F9: 6 (37.5%)
+
+[C specialized_length_matched] (n=16)
+  F1: 9 (56.2%)
+  F2: 12 (75.0%)
+  F3: 6 (37.5%)
+  F4: 5 (31.2%)
+  F5: 6 (37.5%)
+  F6: 12 (75.0%)
+  F7: 4 (25.0%)
+  F8: 4 (25.0%)
+  F9: 5 (31.2%)
+
+  NOTE: F1 (wrong-responsibility) & F7 (out-of-role tool use) are structurally only possible in B and C (generalists own all roles). High F2 with high accuracy => inspect for heuristic over-trigger (Part 17); do NOT change the classifier here.

@@ -1,0 +1,65 @@
+PROPOSED V3 PROTOCOL AMENDMENT — DRAFT FOR REVIEW
+Responsibility Specialization in LLM-Agent Systems
+Status: Draft only; NOT preregistered, NOT frozen, and NOT run
+Date prepared: 2026-10-19
+
+1. WHY A NEW VERSION IS NEEDED
+The completed V2 experiment must remain intact. Its Qwen results support lower total token use for specialized B versus generalist A, but B-versus-C is inconclusive and C's padding has not been validated as behaviorally neutral. V3 is a new experiment; it must not overwrite or be pooled with V2.
+
+2. RESEARCH QUESTION
+Does role/responsibility specialization change task-level reliability and total token cost when a generalist prompt and specialized prompts padded to the same approximate input length are compared? Are findings sensitive to the filler text used for length matching?
+
+3. CONDITIONS
+A — Generalist baseline: exact frozen V2 A prompt.
+B — Specialized baseline: exact frozen V2 B prompts, without padding.
+C1 — Length-matched specialization, filler family 1: exact B prompts plus filler variant 1, matched to the A prompt length.
+C2 — Length-matched specialization, filler family 2: exact B prompts plus a separately authored filler variant 2, matched to the A prompt length.
+
+Do not alter A or B. Do not replace the completed V2 C in the existing dataset. C1/C2 are new conditions. Freeze full prompt text and per-agent assignment before any pilot or confirmatory run.
+
+4. PRIMARY MODEL AND REPLICATIONS
+Primary confirmatory model: Qwen 2.5 7B using the exact recorded Ollama model tag/version.
+Llama 3.1 8B and Mistral 7B are separate replication experiments, not pooled with Qwen. If run, report model-specific estimates and truncation rates.
+
+5. TASKS AND RUN COUNTS
+Candidate plan: retain the same 50 tasks, five repetitions per task-condition, and use four conditions A/B/C1/C2. This gives 50 x 5 x 4 = 1,000 Qwen runs. This is a proposed plan, not a power-justified sample size. Before freezing, either justify the sample size from a predeclared precision/power target or explicitly label it a fixed replication design.
+Do not add Llama/Mistral runs automatically. First complete Qwen protocol and pilot checks; decide on model replications before seeing confirmatory outcomes.
+
+6. PROMPT LENGTH MATCHING
+Use each model's actual runtime tokenizer/counting endpoint, not a different model's tokenizer as proxy. Record per-agent prompt token counts and total system-prompt tokens. Target: each C1/C2 agent prompt within +/-1% of its corresponding A-agent target where technically feasible; report exact deviations. If per-agent matching is infeasible because agent roles/prompts do not map one-to-one, define and justify the mapping before inspecting outcomes and report both per-agent and aggregate counts.
+Do not use meta-instructions such as "ignore this text", "this is filler", "this text has no meaning", or "do not use this information"; these are instructions and may change behavior. No filler is assumed neutral by construction.
+
+7. FILLER FAMILIES AND SENSITIVITY
+Use two different generic prose families (C1/C2) that avoid task/domain-specific facts, agent-role descriptions, instructions, evaluative language, or explicit statements about how the model should treat the passage. They are candidate controls only.
+Freeze both exact texts and hashes. A human reviewer should check for imperative language, domain leakage, hidden task hints, semantic cues, or role-specific terms before pilot.
+C1 versus C2 is a filler-sensitivity check. Predeclare what difference is practically material for reliability and token cost before running. If C1 and C2 differ materially, the data do not support treating either as a clean isolated prompt-length control; report sensitivity and narrow the causal claim.
+
+8. PILOT (OPERATIONAL ONLY)
+Run a small, predeclared pilot only to test prompt parsing, token counts, tool-call compliance, truncation, timeouts, errors, and logging. Do not use pilot results as confirmatory evidence and do not choose filler based on which one yields a preferred outcome. Define pilot size and acceptance criteria before running. If pilot tasks overlap the confirmatory set, exclude those pilot runs from confirmatory analysis and document the exclusion.
+Operational success cannot prove semantic neutrality. Neutrality is assessed only indirectly through preregistered comparisons between filler variants and remains a limitation.
+
+9. OUTCOMES AND ANALYSIS
+Primary outcomes: task-level correctness/reliability and total token use. Retain V2's correctness definition and token accounting only if code and definitions are frozen and audited before V3.
+Unit of inference: for each task-condition, average across the five repetitions; paired inference across tasks.
+Planned omnibus: Friedman test across A/B/C1/C2 for each primary outcome.
+Planned pairwise contrasts: A-B, A-C1, A-C2, C1-C2, with a predeclared multiplicity correction across the planned family. If B-C1 and B-C2 are also reported inferentially, include them in the family from the start.
+If reliability equivalence remains a target, predeclare the margin (V2 used +/-0.05), TOST alpha, confidence interval, and exact contrast family before data collection. Failure to establish equivalence is not proof of a difference.
+Latency is exploratory unless explicitly elevated before the experiment is frozen.
+
+10. RUN ORDER AND LOGGING
+Randomize or counterbalance condition execution order per task/repetition; save execution_order for every run. Freeze model tag, runtime/software version, context limit, timeout, decoding parameters, tools, task wording, gold answers, and analysis code. Log raw prompts, prompt hashes, task/condition/repetition IDs, seeds where available, per-agent token counts, input/output/total tokens, prompt-evaluation counts if available, finish/stop reason, truncation, timeouts, errors, and wall-clock latency.
+
+11. DATA INTEGRITY AND MISSING/FAILED RUNS
+Keep raw logs read-only. Primary analysis must follow a predeclared policy for timeouts, errors, malformed outputs, and truncation; never silently drop these. Report all-run analysis and clearly labeled sensitivity analyses. Preserve per-model results separately.
+
+12. FREEZE AND DEVIATIONS
+Before confirmatory collection, save and hash this protocol, exact prompts, filler texts, task set, gold answers, run config, analysis script, and environment/model identifiers. Record a UTC freeze timestamp and hashes in a manifest. Any later changes require a dated amendment and transparent reporting.
+
+13. CLAIMS TO AVOID
+Do not say "specialization itself reduces tokens independently of prompt length" unless the length-matched contrasts and filler-sensitivity checks support that claim.
+Do not call filler "neutral" merely because it is generic or length-matched.
+Do not pool V2 and V3.
+Do not treat the additional models as registered confirmatory evidence unless explicitly preregistered as such.
+
+14. DECISION RULE
+Proceed to confirmatory V3 only after: (a) prompt and task artifacts are frozen, (b) tokenizer counts are verified in the actual runtime for each intended model, (c) pilot acceptance criteria pass, (d) analysis and multiplicity plan are frozen, and (e) hashes/freeze timestamp are saved. If these are not met, report V2 honestly and do not claim independent prompt-length effects.

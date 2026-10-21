@@ -1,0 +1,103 @@
+Analysis of 300 runs across conditions: ['generalist', 'specialized']
+======================================================================
+PRIMARY: paired task-level analysis (Wilcoxon signed-rank across tasks)
+======================================================================
+
+[success]  n_tasks=30
+  generalist  mean = 0.8667
+  specialized mean = 0.8600
+  median(spec - gen) = +0.0000
+  Wilcoxon stat=21.0, raw p=0.4974
+
+[total_tokens]  n_tasks=30
+  generalist  mean = 4147.1733
+  specialized mean = 2957.7067
+  median(spec - gen) = -1010.3000
+  Wilcoxon stat=6.0, raw p=3.18e-06
+
+[latency_seconds]  n_tasks=30
+  generalist  mean = 89.8589
+  specialized mean = 69.3960
+  median(spec - gen) = -12.8213
+  Wilcoxon stat=108.0, raw p=0.009301
+
+Holm-adjusted p-values across primary DVs:
+  success          raw=0.4974  adj=0.4974  
+  total_tokens     raw=3.18e-06  adj=9.539e-06 *
+  latency_seconds  raw=0.009301  adj=0.0186 *
+
+======================================================================
+Overall per-condition summary (runs pooled; CI via task-mean bootstrap)
+======================================================================
+
+[generalist]  runs=150
+  success rate = 0.867  (task-mean 95% CI 0.767-0.947)
+  mean total tokens = 4147
+  mean system-prompt tokens (overhead) = 1602
+  mean latency = 89.86s
+  mean llm_calls = 5.96
+
+[specialized]  runs=150
+  success rate = 0.860  (task-mean 95% CI 0.760-0.947)
+  mean total tokens = 2958
+  mean system-prompt tokens (overhead) = 1088
+  mean latency = 69.40s
+  mean llm_calls = 5.60
+
+======================================================================
+Reliability by difficulty x condition (RQ5: when does it help/hurt?)
+======================================================================
+
+condition   generalist  specialized
+difficulty                         
+easy              0.90        0.900
+hard              0.85        0.850
+medium            0.85        0.833
+
+======================================================================
+Failure-type frequency per condition (RQ6: pathways shifted)
+======================================================================
+
+[generalist] (n=150 runs)
+  F2: 118 (78.7% of runs)
+  F3: 18 (12.0% of runs)
+  F4: 20 (13.3% of runs)
+  F5: 16 (10.7% of runs)
+  F6: 93 (62.0% of runs)
+  F8: 17 (11.3% of runs)
+  F9: 20 (13.3% of runs)
+
+[specialized] (n=150 runs)
+  F1: 115 (76.7% of runs)
+  F2: 113 (75.3% of runs)
+  F3: 20 (13.3% of runs)
+  F4: 21 (14.0% of runs)
+  F5: 28 (18.7% of runs)
+  F6: 79 (52.7% of runs)
+  F7: 79 (52.7% of runs)
+  F8: 32 (21.3% of runs)
+  F9: 21 (14.0% of runs)
+
+======================================================================
+SECONDARY: GEE logistic (correct ~ condition), clustered by task
+======================================================================
+
+                               GEE Regression Results                              
+===================================================================================
+Dep. Variable:                     correct   No. Observations:                  300
+Model:                                 GEE   No. clusters:                       30
+Method:                        Generalized   Min. cluster size:                  10
+                      Estimating Equations   Max. cluster size:                  10
+Family:                           Binomial   Mean cluster size:                10.0
+Dependence structure:         Exchangeable   Num. iterations:                     2
+Date:                     Wed, 30 Sep 2026   Scale:                           1.000
+Covariance type:                    robust   Time:                         11:31:20
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      1.8718      0.402      4.651      0.000       1.083       2.661
+spec          -0.0565      0.202     -0.279      0.780      -0.453       0.340
+==============================================================================
+Skew:                         -2.1152   Kurtosis:                       2.4749
+Centered skew:                -1.6103   Centered kurtosis:              5.8509
+==============================================================================

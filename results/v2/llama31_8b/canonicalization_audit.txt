@@ -1,0 +1,238 @@
+========================================================================================
+LLAMA-3.1-8B v2  —  CANONICALIZATION AUDIT (retry/duplicate removal)
+========================================================================================
+raw file   : results/v2/llama31_8b/runs.jsonl  (NEVER modified)
+clean file : results/v2/llama31_8b/runs_clean.jsonl
+
+original records : 777
+clean records    : 750   (expected 750)
+removed records  : 27
+duplicate groups : 27
+ambiguous groups : 0  (unresolved — manual review needed)
+flagged groups   : 25  (validity-tied, resolved by provenance only)
+
+condition counts  original -> clean
+  generalist                  :  258 ->  250
+  specialized                 :  261 ->  250
+  specialized_length_matched  :  258 ->  250
+
+RULE USED:
+  One record per (condition, task_id, run_index). For duplicates: (a) candidates = non-truncated records if any exist else all records (prefer a valid/non-truncated execution over a truncated one); (b) among candidates keep the earliest timestamp_start (the original scheduled run); later re-executions (retries) are removed. Selection never uses correctness, latency, tokens or any outcome metric. If candidates tie on timestamp_start the group is reported as ambiguous and NOT resolved. Validity-tied groups (all-truncated / all-non-truncated) are resolved by chronological provenance and additionally flagged for transparency.
+
+----------------------------------------------------------------------------------------
+REMOVED RECORDS (retries / re-executions):
+----------------------------------------------------------------------------------------
+  generalist / HA03 / run2 seed=33 truncated=True
+      removed start=2026-10-07T17:07:13.205637+00:00 end=2026-10-07T17:09:50.929585+00:00
+      kept    start=2026-10-07T17:04:47.953041+00:00
+      reason : retry removed: this execution is truncated and a non-truncated execution exists for the same (condition,task_id,run_index)
+  generalist / HA03 / run3 seed=44 truncated=True
+      removed start=2026-10-07T16:38:59.450558+00:00 end=2026-10-07T16:41:06.128152+00:00
+      kept    start=2026-10-07T16:41:12.688213+00:00
+      reason : retry removed: this execution is truncated and a non-truncated execution exists for the same (condition,task_id,run_index)
+  generalist / HP02 / run3 seed=44 truncated=False
+      removed start=2026-10-07T17:04:42.687952+00:00 end=2026-10-07T17:05:48.576103+00:00
+      kept    start=2026-10-07T17:03:16.521294+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  generalist / HP12 / run3 seed=44 truncated=False
+      removed start=2026-10-07T16:51:06.178913+00:00 end=2026-10-07T16:52:59.668219+00:00
+      kept    start=2026-10-07T16:48:30.863889+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  generalist / HP13 / run2 seed=33 truncated=False
+      removed start=2026-10-07T16:43:27.305856+00:00 end=2026-10-07T16:45:07.970559+00:00
+      kept    start=2026-10-07T16:42:19.930151+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  generalist / MQ01 / run0 seed=11 truncated=False
+      removed start=2026-10-07T16:38:24.014673+00:00 end=2026-10-07T16:41:12.682633+00:00
+      kept    start=2026-10-07T16:36:44.146631+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  generalist / MQ01 / run4 seed=55 truncated=False
+      removed start=2026-10-07T17:13:37.147001+00:00 end=2026-10-07T17:15:02.147295+00:00
+      kept    start=2026-10-07T17:11:35.729498+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  generalist / MQ17 / run2 seed=33 truncated=False
+      removed start=2026-10-07T17:19:26.572740+00:00 end=2026-10-07T17:20:24.437995+00:00
+      kept    start=2026-10-07T17:17:33.888924+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized / HA01 / run2 seed=33 truncated=False
+      removed start=2026-10-07T16:42:12.715824+00:00 end=2026-10-07T16:43:27.301569+00:00
+      kept    start=2026-10-07T16:41:06.132574+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized / HA02 / run2 seed=33 truncated=False
+      removed start=2026-10-07T17:21:14.101266+00:00 end=2026-10-07T17:23:19.965510+00:00
+      kept    start=2026-10-07T17:19:32.366465+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized / HA07 / run2 seed=33 truncated=False
+      removed start=2026-10-07T17:20:24.443620+00:00 end=2026-10-07T17:21:14.098069+00:00
+      kept    start=2026-10-07T17:18:47.157724+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized / HP04 / run4 seed=55 truncated=False
+      removed start=2026-10-07T16:46:20.291049+00:00 end=2026-10-07T16:48:46.126296+00:00
+      kept    start=2026-10-07T16:45:02.197535+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized / HP18 / run0 seed=11 truncated=False
+      removed start=2026-10-07T17:17:28.072497+00:00 end=2026-10-07T17:18:30.476471+00:00
+      kept    start=2026-10-07T17:15:34.979344+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized / HP19 / run2 seed=33 truncated=False
+      removed start=2026-10-07T17:05:48.580249+00:00 end=2026-10-07T17:07:13.201125+00:00
+      kept    start=2026-10-07T17:04:14.109498+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized / HP19 / run3 seed=44 truncated=False
+      removed start=2026-10-07T17:00:47.272325+00:00 end=2026-10-07T17:01:51.212458+00:00
+      kept    start=2026-10-07T16:58:37.004292+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized / HP20 / run3 seed=44 truncated=False
+      removed start=2026-10-07T17:18:30.480324+00:00 end=2026-10-07T17:19:26.567877+00:00
+      kept    start=2026-10-07T17:16:26.622718+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized / MQ09 / run2 seed=33 truncated=True
+      removed start=2026-10-07T16:58:30.690744+00:00 end=2026-10-07T17:00:47.269890+00:00
+      kept    start=2026-10-07T16:55:45.739979+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (BOTH executions truncated — validity tied, flagged)
+  specialized / MQ11 / run0 seed=11 truncated=False
+      removed start=2026-10-07T16:55:37.364478+00:00 end=2026-10-07T16:58:30.685988+00:00
+      kept    start=2026-10-07T16:52:24.255001+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized / MQ16 / run1 seed=22 truncated=False
+      removed start=2026-10-07T17:16:22.730414+00:00 end=2026-10-07T17:17:28.070426+00:00
+      kept    start=2026-10-07T17:13:48.849078+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized_length_matched / HA05 / run3 seed=44 truncated=False
+      removed start=2026-10-07T17:12:01.428083+00:00 end=2026-10-07T17:13:37.144732+00:00
+      kept    start=2026-10-07T17:08:42.175398+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized_length_matched / HA08 / run1 seed=22 truncated=False
+      removed start=2026-10-07T17:03:27.505545+00:00 end=2026-10-07T17:04:42.684741+00:00
+      kept    start=2026-10-07T17:01:39.977503+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized_length_matched / HP09 / run0 seed=11 truncated=False
+      removed start=2026-10-07T16:45:07.972589+00:00 end=2026-10-07T16:46:20.288352+00:00
+      kept    start=2026-10-07T16:43:26.643873+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized_length_matched / MQ07 / run0 seed=11 truncated=False
+      removed start=2026-10-07T17:01:51.217273+00:00 end=2026-10-07T17:03:27.502400+00:00
+      kept    start=2026-10-07T17:00:02.491555+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized_length_matched / MQ09 / run2 seed=33 truncated=False
+      removed start=2026-10-07T17:15:02.152579+00:00 end=2026-10-07T17:16:22.726693+00:00
+      kept    start=2026-10-07T17:12:44.677584+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized_length_matched / MQ13 / run4 seed=55 truncated=False
+      removed start=2026-10-07T17:09:50.937173+00:00 end=2026-10-07T17:12:01.421907+00:00
+      kept    start=2026-10-07T17:05:54.238981+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized_length_matched / MQ16 / run0 seed=11 truncated=False
+      removed start=2026-10-07T16:52:59.671871+00:00 end=2026-10-07T16:55:37.357621+00:00
+      kept    start=2026-10-07T16:50:07.999570+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+  specialized_length_matched / MQ20 / run1 seed=22 truncated=False
+      removed start=2026-10-07T16:48:46.130701+00:00 end=2026-10-07T16:51:06.174662+00:00
+      kept    start=2026-10-07T16:46:09.165635+00:00
+      reason : retry removed: later re-execution; kept the earliest-timestamp original (both executions non-truncated — validity tied)
+
+----------------------------------------------------------------------------------------
+FLAGGED GROUPS (validity-tied; resolved on chronological provenance only, NOT outcome):
+----------------------------------------------------------------------------------------
+  generalist / HP02 / run3  [all-non-truncated]
+      line=405 trunc=False start=2026-10-07T17:03:16.521294+00:00 lat=57.586 correct=True
+      line=408 trunc=False start=2026-10-07T17:04:42.687952+00:00 lat=65.889 correct=True
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  generalist / HP12 / run3  [all-non-truncated]
+      line=391 trunc=False start=2026-10-07T16:48:30.863889+00:00 lat=97.134 correct=True
+      line=394 trunc=False start=2026-10-07T16:51:06.178913+00:00 lat=113.49 correct=True
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  generalist / HP13 / run2  [all-non-truncated]
+      line=383 trunc=False start=2026-10-07T16:42:19.930151+00:00 lat=66.71 correct=False
+      line=386 trunc=False start=2026-10-07T16:43:27.305856+00:00 lat=100.666 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  generalist / MQ01 / run0  [all-non-truncated]
+      line=378 trunc=False start=2026-10-07T16:36:44.146631+00:00 lat=135.299 correct=False
+      line=380 trunc=False start=2026-10-07T16:38:24.014673+00:00 lat=168.678 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  generalist / MQ01 / run4  [all-non-truncated]
+      line=415 trunc=False start=2026-10-07T17:11:35.729498+00:00 lat=68.943 correct=False
+      line=418 trunc=False start=2026-10-07T17:13:37.147001+00:00 lat=85.001 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  generalist / MQ17 / run2  [all-non-truncated]
+      line=425 trunc=False start=2026-10-07T17:17:33.888924+00:00 lat=73.266 correct=False
+      line=428 trunc=False start=2026-10-07T17:19:26.572740+00:00 lat=57.866 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / HA01 / run2  [all-non-truncated]
+      line=382 trunc=False start=2026-10-07T16:41:06.132574+00:00 lat=73.799 correct=False
+      line=384 trunc=False start=2026-10-07T16:42:12.715824+00:00 lat=74.586 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / HA02 / run2  [all-non-truncated]
+      line=429 trunc=False start=2026-10-07T17:19:32.366465+00:00 lat=78.03 correct=False
+      line=431 trunc=False start=2026-10-07T17:21:14.101266+00:00 lat=125.865 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / HA07 / run2  [all-non-truncated]
+      line=427 trunc=False start=2026-10-07T17:18:47.157724+00:00 lat=45.207 correct=False
+      line=430 trunc=False start=2026-10-07T17:20:24.443620+00:00 lat=49.655 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / HP04 / run4  [all-non-truncated]
+      line=387 trunc=False start=2026-10-07T16:45:02.197535+00:00 lat=66.965 correct=True
+      line=390 trunc=False start=2026-10-07T16:46:20.291049+00:00 lat=145.837 correct=True
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / HP18 / run0  [all-non-truncated]
+      line=421 trunc=False start=2026-10-07T17:15:34.979344+00:00 lat=51.64 correct=True
+      line=424 trunc=False start=2026-10-07T17:17:28.072497+00:00 lat=62.404 correct=True
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / HP19 / run2  [all-non-truncated]
+      line=407 trunc=False start=2026-10-07T17:04:14.109498+00:00 lat=33.841 correct=False
+      line=410 trunc=False start=2026-10-07T17:05:48.580249+00:00 lat=84.621 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / HP19 / run3  [all-non-truncated]
+      line=399 trunc=False start=2026-10-07T16:58:37.004292+00:00 lat=85.485 correct=True
+      line=402 trunc=False start=2026-10-07T17:00:47.272325+00:00 lat=63.941 correct=True
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / HP20 / run3  [all-non-truncated]
+      line=423 trunc=False start=2026-10-07T17:16:26.622718+00:00 lat=67.263 correct=False
+      line=426 trunc=False start=2026-10-07T17:18:30.480324+00:00 lat=56.088 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / MQ09 / run2  [all-truncated]
+      line=398 trunc=True start=2026-10-07T16:55:45.739979+00:00 lat=171.241 correct=True
+      line=400 trunc=True start=2026-10-07T16:58:30.690744+00:00 lat=136.58 correct=True
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / MQ11 / run0  [all-non-truncated]
+      line=396 trunc=False start=2026-10-07T16:52:24.255001+00:00 lat=201.482 correct=False
+      line=397 trunc=False start=2026-10-07T16:55:37.364478+00:00 lat=173.303 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized / MQ16 / run1  [all-non-truncated]
+      line=419 trunc=False start=2026-10-07T17:13:48.849078+00:00 lat=106.126 correct=False
+      line=422 trunc=False start=2026-10-07T17:16:22.730414+00:00 lat=65.34 correct=True
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized_length_matched / HA05 / run3  [all-non-truncated]
+      line=413 trunc=False start=2026-10-07T17:08:42.175398+00:00 lat=173.551 correct=False
+      line=416 trunc=False start=2026-10-07T17:12:01.428083+00:00 lat=95.722 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized_length_matched / HA08 / run1  [all-non-truncated]
+      line=403 trunc=False start=2026-10-07T17:01:39.977503+00:00 lat=96.541 correct=True
+      line=406 trunc=False start=2026-10-07T17:03:27.505545+00:00 lat=75.18 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized_length_matched / HP09 / run0  [all-non-truncated]
+      line=385 trunc=False start=2026-10-07T16:43:26.643873+00:00 lat=95.551 correct=False
+      line=388 trunc=False start=2026-10-07T16:45:07.972589+00:00 lat=72.316 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized_length_matched / MQ07 / run0  [all-non-truncated]
+      line=401 trunc=False start=2026-10-07T17:00:02.491555+00:00 lat=97.484 correct=True
+      line=404 trunc=False start=2026-10-07T17:01:51.217273+00:00 lat=96.286 correct=True
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized_length_matched / MQ09 / run2  [all-non-truncated]
+      line=417 trunc=False start=2026-10-07T17:12:44.677584+00:00 lat=64.173 correct=True
+      line=420 trunc=False start=2026-10-07T17:15:02.152579+00:00 lat=80.575 correct=True
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized_length_matched / MQ13 / run4  [all-non-truncated]
+      line=411 trunc=False start=2026-10-07T17:05:54.238981+00:00 lat=167.931 correct=False
+      line=414 trunc=False start=2026-10-07T17:09:50.937173+00:00 lat=130.486 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized_length_matched / MQ16 / run0  [all-non-truncated]
+      line=393 trunc=False start=2026-10-07T16:50:07.999570+00:00 lat=136.25 correct=True
+      line=395 trunc=False start=2026-10-07T16:52:59.671871+00:00 lat=157.687 correct=False
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+  specialized_length_matched / MQ20 / run1  [all-non-truncated]
+      line=389 trunc=False start=2026-10-07T16:46:09.165635+00:00 lat=141.694 correct=False
+      line=392 trunc=False start=2026-10-07T16:48:46.130701+00:00 lat=140.045 correct=True
+      -> kept earliest-timestamp original; later re-execution removed (decision on provenance only, no outcome metric used)
+
+No unresolved ambiguous groups.

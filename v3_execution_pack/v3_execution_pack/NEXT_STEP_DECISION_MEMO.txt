@@ -1,0 +1,33 @@
+NEXT STEP DECISION MEMO
+Prepared 2026-10-19
+
+DECISION
+Do not rerun the old 2,250 runs. Preserve V2 as a completed, separately reported experiment. If the research goal remains a stronger prompt-length-independent claim, plan a new V3 experiment; do not modify existing C rows or retroactively relabel V2 as validated.
+
+WHAT V2 CURRENTLY SUPPORTS
+- Registered Qwen model: specialized B used fewer total tokens than generalist A; mean task-level paired A-B difference +2,586.9 tokens, Holm-adjusted p=0.00479.
+- B-C: mean B-C difference -675.9 tokens, Holm-adjusted p=0.356; inconclusive.
+- Reliability equivalence within +/-0.05 was not established for any of the three pairs.
+- Other models show different cost patterns and have substantial truncation, so treat them as model-specific replications.
+
+WHY NOT JUST ADD MORE PADDING NOW?
+Changing C after data collection would change the treatment condition. A post-hoc replacement cannot repair the original experiment. Natural-language filler may affect model behavior; matching token counts alone does not prove neutrality.
+
+PROPOSED V3 MINIMUM
+- Qwen confirmatory only at first.
+- Four conditions A/B/C1/C2; same 50 tasks x 5 repetitions = 1,000 runs if retaining the existing design. This is a candidate fixed design, not a formal power calculation.
+- Two distinct filler families, each token-matched using the actual Qwen/Ollama tokenizer.
+- Small operational pilot with predeclared rules, excluded from confirmatory analysis if it overlaps the task set.
+- Predeclared outcome definitions, paired task-level analysis, multiplicity family, truncation/error handling, execution-order logging, and frozen hashes.
+- Run Llama/Mistral replications only if budget/time allows and only with their own native tokenizer checks; do not pool models.
+
+IMPORTANT LIMIT
+Even if C1 and C2 agree, this does not prove filler has zero semantic effect. It only provides evidence that findings are not highly sensitive to the two tested filler families. The paper should state this limitation.
+
+NEXT ACTIONS
+1. Review and edit NEXT_STEP_PROTOCOL_AMENDMENT_DRAFT.txt.
+2. Freeze exact A/B prompt files and map each agent prompt to its A-length target.
+3. Prepare two filler variants and have them reviewed before any outcome testing.
+4. Implement a tokenizer-count script against the actual runtime endpoint and save exact counts.
+5. Predeclare pilot acceptance rules and analysis plan.
+6. Freeze hashes, then run the pilot. Decide on confirmatory collection only after pilot operational checks pass.

@@ -1,0 +1,12 @@
+{
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "freeze_timestamp_utc": null,
+  "model_tags": {},
+  "runtime_versions": {},
+  "protocol_sha256": null,
+  "task_set_sha256": null,
+  "gold_answers_sha256": null,
+  "analysis_code_sha256": null,
+  "prompt_files": {},
+  "notes": "Populate only after human review and before confirmatory runs. Do not treat this template as a preregistration or freeze."
+}

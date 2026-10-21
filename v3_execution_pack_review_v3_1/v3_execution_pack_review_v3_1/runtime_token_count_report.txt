@@ -1,0 +1,17 @@
+Model: qwen2.5:7b
+Endpoint: http://localhost:11434/api/chat
+Target A full-prompt prompt_eval_count: 486
+Tolerance: +/-1.00%
+
+Counts include fixed probe/template; compare only within this model/runtime.
+B / retrieve: 364 (delta -122, -25.10%), within tolerance=False
+C1 / retrieve: 488 (delta 2, 0.41%), within tolerance=True
+C2 / retrieve: 486 (delta 0, 0.00%), within tolerance=True
+B / solve: 326 (delta -160, -32.92%), within tolerance=False
+C1 / solve: 490 (delta 4, 0.82%), within tolerance=True
+C2 / solve: 490 (delta 4, 0.82%), within tolerance=True
+B / verify: 340 (delta -146, -30.04%), within tolerance=False
+C1 / verify: 486 (delta 0, 0.00%), within tolerance=True
+C2 / verify: 486 (delta 0, 0.00%), within tolerance=True
+
+IMPORTANT: Token matching is not proof of behavioral neutrality. Review sentence choices, freeze prompt hashes, and treat pilot only as operational validation.

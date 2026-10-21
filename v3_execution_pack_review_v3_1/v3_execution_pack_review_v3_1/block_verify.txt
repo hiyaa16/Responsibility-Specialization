@@ -1,0 +1,5 @@
+RESPONSIBILITY — VERIFICATION:
+Inspect the proposed solution. Check that the facts used are correct, that the reasoning
+and calculations are sound, and that the answer actually addresses the task. If you find
+an error, correct it and explain the correction. If it is correct, confirm it. Output the
+final, verified answer.

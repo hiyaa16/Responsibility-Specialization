@@ -1,0 +1,5 @@
+file,sha256,status
+preamble.txt,6549292eccd4ff3b32bd5fc792389869544e0176791bd9cac96101b7b201124e,source hash; not a final experiment freeze
+block_retrieve.txt,2645a24cf2283442011698912bf97601f1e93480dc2cc8b2a4bf0125ce88a1f2,source hash; not a final experiment freeze
+block_solve.txt,156717a04b2b0b527004dd2a49d1badf4d02bf22f98ec6c1c50bfb2edf8c8507,source hash; not a final experiment freeze
+block_verify.txt,3d7cfac5d88773fb51849c9d4798738aa1b65f140f0609a20b1e955a2122e07f,source hash; not a final experiment freeze

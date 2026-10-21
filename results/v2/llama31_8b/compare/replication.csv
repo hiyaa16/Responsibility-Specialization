@@ -1,0 +1,12 @@
+metric,qwen_A-C_med,qwen_holm,qwen_rb,llama_A-C_med,llama_holm,llama_rb,verdict
+accuracy,0.0,1.0,0.067,0.0,0.3650004034024992,-0.257,N/A (no significant Qwen A-C effect to replicate)
+latency_seconds,-5.3821,0.0003736442241422111,-0.602,0.5714,0.44326672141018975,0.126,NOT REPLICATED (Llama n.s. and opposite direction)
+total_tokens,-53.8,0.3562020955817218,-0.176,3065.5,0.0002605915683489002,0.6,N/A (no significant Qwen A-C effect to replicate)
+input_tokens,-33.8,0.35718707191412413,-0.151,2929.5,0.00010749149341293673,0.63,N/A (no significant Qwen A-C effect to replicate)
+output_tokens,-83.3,0.0017336666330936756,-0.565,-201.9,0.2323909961453623,-0.211,"PARTIALLY REPLICATED (same direction, not Holm-significant on Llama)"
+llm_calls,0.0,1.0,-0.008,1.1,2.047038116095691e-05,0.746,N/A (no significant Qwen A-C effect to replicate)
+tool_calls_total,0.0,1.0,-0.004,1.1,2.260235355497768e-05,0.742,N/A (no significant Qwen A-C effect to replicate)
+repeated_work,-0.057,0.2920367228994465,-0.238,-0.045,0.01957561560343457,-0.437,N/A (no significant Qwen A-C effect to replicate)
+corrections,0.2,0.018077831022769233,0.496,0.2,0.028439653227886542,0.431,REPLICATED
+ov_01,-0.1065,0.0018298734786377224,-0.526,-0.037,0.013460919338900368,-0.435,REPLICATED
+max_agent_input,-171.3,0.2373529877703877,-0.194,1549.5,5.3771756494569445e-05,0.652,N/A (no significant Qwen A-C effect to replicate)

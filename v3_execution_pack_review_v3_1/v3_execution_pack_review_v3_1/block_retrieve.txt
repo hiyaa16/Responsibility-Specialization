@@ -1,0 +1,6 @@
+RESPONSIBILITY — RETRIEVAL:
+Identify and extract the information relevant to the task from the reference context.
+Use the lookup tool to obtain the context. Pull out the specific facts, numbers, and
+constraints that are needed to answer the task, and state them explicitly so the next
+agent can use them. Do not attempt to solve the entire task yourself — your job is to
+surface the correct evidence, not to compute the final result.

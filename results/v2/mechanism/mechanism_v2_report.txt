@@ -1,0 +1,425 @@
+MECHANISM-LEVEL ANALYSIS | 750 runs | dir=/Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/v2
+==============================================================================
+PHASE 0 - DATA VALIDATION
+==============================================================================
+total runs = 750  (expected 750)
+  A generalist                     = 250  (expected 250)
+  B specialized                    = 250  (expected 250)
+  C specialized_length_matched     = 250  (expected 250)
+model(s)        = {'qwen2.5:7b': 750}  (expected qwen2.5:7b)
+temperature(s)  = {0.7: 750}  (expected 0.7)
+agent_count(s)  = {3: 750}  (expected 3)
+handoffs        = {2: 750}  (expected 2)
+role-by-index assignment: OK (matches design)
+problematic runs (reported, NOT removed): truncated=1, timeout=0, error=0
+  truncated run(s): [{'condition': 'specialized_length_matched', 'task_id': 'HP11', 'run_index': 2}]
+null/missing in important fields: none
+negative-value check: none
+file ordering: 2 condition-transitions across 750 runs -> CONDITION-BLOCKED (all runs of a condition contiguous)
+  CAUTION: no timestamps are logged; if execution order matched file order, each condition ran as one block. On a CPU-bound host, time-varying machine load could then confound the LATENCY comparison (not tokens/accuracy). Flagged for Phase 8 tail analysis & limitations.
+
+VALIDATION VERDICT: PASS - clean
+
+==============================================================================
+PHASE 1 - RECOMPUTE PRIMARY METRICS (task-level paired; Wilcoxon + Holm)
+==============================================================================
+
+[accuracy]  (run-level mean / median / sd)
+  A generalist                     mean=0.5120  median=1.0000  sd=0.5009
+  B specialized                    mean=0.5240  median=1.0000  sd=0.5004
+  C specialized_length_matched     mean=0.5000  median=0.5000  sd=0.5010
+  Friedman chi2=0.146 p=0.9297  (n_tasks=50)
+    A-B: mean(2nd-1st)=+0.0120  median=+0.0000  rb=+0.105  95%CI[-0.0400,+0.0640]  p=0.6572 holm=1 
+    B-C: mean(2nd-1st)=-0.0240  median=+0.0000  rb=-0.104  95%CI[-0.0720,+0.0240]  p=0.6733 holm=1 
+    A-C: mean(2nd-1st)=-0.0120  median=+0.0000  rb=+0.067  95%CI[-0.0680,+0.0440]  p=0.7807 holm=1 
+
+[latency_seconds]  (run-level mean / median / sd)
+  A generalist                     mean=113.6237  median=24.8425  sd=220.0696
+  B specialized                    mean=25.1545  median=21.1770  sd=15.4116
+  C specialized_length_matched     mean=25.5494  median=22.4175  sd=15.7193
+  Friedman chi2=9.760 p=0.007597  (n_tasks=50)
+    A-B: mean(2nd-1st)=-88.4691  median=-2.9625  rb=-0.528  95%CI[-147.9607,-38.4874]  p=0.0008807 holm=0.001761*
+    B-C: mean(2nd-1st)=+0.3949  median=+0.1919  rb=+0.082  95%CI[-1.9027,+2.6258]  p=0.6157 holm=0.6157 
+    A-C: mean(2nd-1st)=-88.0743  median=-5.3821  rb=-0.602  95%CI[-146.7793,-38.8712]  p=0.0001245 holm=0.0003736*
+
+[total_tokens]  (run-level mean / median / sd)
+  A generalist                     mean=16366.9320  median=11822.5000  sd=13140.1378
+  B specialized                    mean=13780.0800  median=10631.5000  sd=10440.4481
+  C specialized_length_matched     mean=14456.0040  median=12580.0000  sd=9939.7750
+  Friedman chi2=11.080 p=0.003927  (n_tasks=50)
+    A-B: mean(2nd-1st)=-2586.8520  median=-2228.4000  rb=-0.503  95%CI[-4326.1197,-1013.6437]  p=0.001596 holm=0.004789*
+    B-C: mean(2nd-1st)=+675.9240  median=+1300.4000  rb=+0.220  95%CI[-836.5188,+2126.8559]  p=0.1781 holm=0.3562 
+    A-C: mean(2nd-1st)=-1910.9280  median=-53.8000  rb=-0.176  95%CI[-3885.4293,-136.5731]  p=0.2823 holm=0.3562 
+
+[input_tokens]  (run-level mean / median / sd)
+  A generalist                     mean=15758.6440  median=11314.5000  sd=12850.7462
+  B specialized                    mean=13221.3720  median=10372.5000  sd=10217.7739
+  C specialized_length_matched     mean=13979.5800  median=12054.5000  sd=9798.6910
+  Friedman chi2=11.320 p=0.003483  (n_tasks=50)
+    A-B: mean(2nd-1st)=-2537.2720  median=-1800.2000  rb=-0.493  95%CI[-4242.2734,-989.7864]  p=0.001978 holm=0.005934*
+    B-C: mean(2nd-1st)=+758.2080  median=+1287.3000  rb=+0.231  95%CI[-714.5200,+2175.2845]  p=0.1571 holm=0.3143 
+    A-C: mean(2nd-1st)=-1779.0640  median=-33.8000  rb=-0.151  95%CI[-3710.4223,-40.1651]  p=0.3572 holm=0.3572 
+
+[output_tokens]  (run-level mean / median / sd)
+  A generalist                     mean=608.2880  median=460.0000  sd=517.3073
+  B specialized                    mean=558.7080  median=457.0000  sd=360.5725
+  C specialized_length_matched     mean=476.4240  median=420.0000  sd=308.4606
+  Friedman chi2=6.824 p=0.03297  (n_tasks=50)
+    A-B: mean(2nd-1st)=-49.5800  median=-35.1000  rb=-0.224  95%CI[-105.6831,+4.4971]  p=0.1719 holm=0.1719 
+    B-C: mean(2nd-1st)=-82.2840  median=-33.5000  rb=-0.392  95%CI[-134.9100,-31.8280]  p=0.01581 holm=0.03161*
+    A-C: mean(2nd-1st)=-131.8640  median=-83.3000  rb=-0.565  95%CI[-193.4697,-73.1464]  p=0.0005779 holm=0.001734*
+
+[llm_calls]  (run-level mean / median / sd)
+  A generalist                     mean=7.2400  median=7.0000  sd=2.6794
+  B specialized                    mean=7.1120  median=7.0000  sd=2.1198
+  C specialized_length_matched     mean=7.0800  median=7.0000  sd=1.9883
+  Friedman chi2=0.613 p=0.7361  (n_tasks=50)
+    A-B: mean(2nd-1st)=-0.1280  median=+0.0000  rb=-0.093  95%CI[-0.5040,+0.2320]  p=0.5951 holm=1 
+    B-C: mean(2nd-1st)=-0.0320  median=+0.3000  rb=+0.040  95%CI[-0.3801,+0.3000]  p=0.8094 holm=1 
+    A-C: mean(2nd-1st)=-0.1600  median=+0.0000  rb=-0.008  95%CI[-0.6400,+0.2880]  p=0.9608 holm=1 
+
+[repeated_work]  (run-level mean / median / sd)
+  A generalist                     mean=0.7524  median=0.7975  sd=0.2355
+  B specialized                    mean=0.6961  median=0.6870  sd=0.2544
+  C specialized_length_matched     mean=0.7119  median=0.6920  sd=0.2522
+  Friedman chi2=7.485 p=0.0237  (n_tasks=50)
+    A-B: mean(2nd-1st)=-0.0563  median=-0.0658  rb=-0.347  95%CI[-0.1059,-0.0068]  p=0.03453 holm=0.1036 
+    B-C: mean(2nd-1st)=+0.0158  median=+0.0008  rb=+0.081  95%CI[-0.0377,+0.0697]  p=0.6224 holm=0.6224 
+    A-C: mean(2nd-1st)=-0.0405  median=-0.0570  rb=-0.238  95%CI[-0.1019,+0.0205]  p=0.146 holm=0.292 
+
+[corrections]  (run-level mean / median / sd)
+  A generalist                     mean=0.8880  median=1.0000  sd=0.8663
+  B specialized                    mean=1.0000  median=1.0000  sd=0.7813
+  C specialized_length_matched     mean=1.0560  median=1.0000  sd=0.7423
+  Friedman chi2=5.638 p=0.05965  (n_tasks=50)
+    A-B: mean(2nd-1st)=+0.1120  median=+0.1000  rb=+0.293  95%CI[-0.0160,+0.2400]  p=0.1015 holm=0.203 
+    B-C: mean(2nd-1st)=+0.0560  median=+0.0000  rb=+0.145  95%CI[-0.0640,+0.1760]  p=0.3888 holm=0.3888 
+    A-C: mean(2nd-1st)=+0.1680  median=+0.2000  rb=+0.496  95%CI[+0.0600,+0.2800]  p=0.006026 holm=0.01808*
+
+  Interpretation note: 'holm<0.05' = evidence of a difference, NOT proof. Non-significant = no statistically significant evidence of a difference (not proof of none).
+
+==============================================================================
+PHASE 2 - AGENT-LEVEL WORKLOAD
+==============================================================================
+
+[A generalist]  (mean per agent)
+  agent0 generalist : input=  9152.1  output= 258.9  iters=3.71  toolcalls=2.71
+  agent1 generalist : input=  3696.9  output= 183.3  iters=1.84  toolcalls=0.84
+  agent2 generalist : input=  2909.7  output= 166.0  iters=1.69  toolcalls=0.69
+
+[B specialized]  (mean per agent)
+  agent0 retriever  : input=  7963.7  output= 245.4  iters=3.52  toolcalls=2.52
+  agent1 solver     : input=  1693.5  output= 117.3  iters=1.44  toolcalls=0.44
+  agent2 verifier   : input=  3564.1  output= 195.9  iters=2.14  toolcalls=1.14
+
+[C specialized_length_matched]  (mean per agent)
+  agent0 retriever  : input=  8494.9  output= 211.4  iters=3.61  toolcalls=2.61
+  agent1 solver     : input=  1749.8  output= 102.2  iters=1.39  toolcalls=0.39
+  agent2 verifier   : input=  3734.9  output= 162.8  iters=2.08  toolcalls=1.08
+
+  Agent-0 workload (the retrieval/first stage - where tool loops concentrate):
+    a0.input_tokens: A-B med=-696.9(holm=0.0103)  B-C med=+661.3(holm=0.0708)  A-C med=-65.0(holm=0.362)
+    a0.output_tokens: A-B med=-6.7(holm=0.374)  B-C med=-33.9(holm=0.0333)  A-C med=-37.6(holm=0.00732)
+    a0.tool_iters: A-B med=-0.2(holm=0.15)  B-C med=+0.2(holm=0.494)  A-C med=+0.0(holm=0.494)
+    a0.tool_calls: A-B med=-0.2(holm=0.129)  B-C med=+0.2(holm=0.53)  A-C med=+0.0(holm=0.53)
+
+  Mean total agent tokens (sum over agents, per run) by condition: A=16367  B=13780  C=14456
+
+==============================================================================
+PHASE 3 - REDUNDANT WORK (repeated_work = max pairwise agent-output Jaccard)
+==============================================================================
+  A generalist                     mean=0.7524 median=0.7975 p90=1.000  frac>=0.6(F6)=0.724
+  B specialized                    mean=0.6961 median=0.6870 p90=1.000  frac>=0.6(F6)=0.596
+  C specialized_length_matched     mean=0.7119 median=0.6920 p90=1.000  frac>=0.6(F6)=0.624
+    A-B: median diff=-0.0658  rb=-0.347  holm=0.1036
+    B-C: median diff=+0.0008  rb=+0.081  holm=0.6224
+    A-C: median diff=-0.0570  rb=-0.238  holm=0.292
+  repeated_work vs latency (Spearman):
+    pooled  rho=-0.137 95%CI[-0.208,-0.066] p=0.0001739 n=750
+    A       rho=-0.134 95%CI[-0.255,-0.013] p=0.03394 n=250
+    B       rho=-0.138 95%CI[-0.260,-0.018] p=0.0293 n=250
+    C       rho=-0.194 95%CI[-0.316,-0.074] p=0.002006 n=250
+
+==============================================================================
+PHASE 4 - ACCUMULATED INPUT-TOKEN LOAD PER AGENT
+==============================================================================
+  NB: a0/a1/a2_input are ACCUMULATED input-token processing loads (summed over each agent's
+  tool-loop forward passes), NOT a direct measure of forwarded/handoff context size. The
+  per-step ratios below are load ratios; they cannot isolate initial handoff size from
+  repeated re-processing across tool iterations.
+
+[A generalist]
+  a0_load mean=  9152.1 median=  6682.5
+  a1_load mean=  3696.9 median=   580.5
+  a2_load mean=  2909.7 median=   588.5
+  total_load mean= 15758.6  max_agent_load mean= 10121.5
+  load ratio a1/a0 median=0.115  a2/a1 median=1.000
+
+[B specialized]
+  a0_load mean=  7963.7 median=  5168.0
+  a1_load mean=  1693.5 median=   412.0
+  a2_load mean=  3564.1 median=  2117.0
+  total_load mean= 13221.4  max_agent_load mean=  8698.1
+  load ratio a1/a0 median=0.140  a2/a1 median=2.554
+
+[C specialized_length_matched]
+  a0_load mean=  8494.9 median=  5719.5
+  a1_load mean=  1749.8 median=   565.0
+  a2_load mean=  3734.9 median=  1826.0
+  total_load mean= 13979.6  max_agent_load mean=  9348.9
+  load ratio a1/a0 median=0.116  a2/a1 median=1.522
+
+  Share of total accumulated input-token load by agent (mean of per-run shares):
+    A: a0=0.654  a1=0.182  a2=0.164
+    B: a0=0.596  a1=0.127  a2=0.277
+    C: a0=0.611  a1=0.129  a2=0.260
+
+  Paired task-level tests:
+    a0_input: A-B med=-696.9(holm=0.0103)  B-C med=+661.3(holm=0.0708)  A-C med=-65.0(holm=0.362)
+    max_agent_input: A-B med=-1206.2(holm=0.000297)  B-C med=+939.8(holm=0.0595)  A-C med=-171.3(holm=0.237)
+    input_tokens: A-B med=-1800.2(holm=0.00593)  B-C med=+1287.3(holm=0.314)  A-C med=-33.8(holm=0.357)
+
+==============================================================================
+PHASE 5 - TOOL USE
+==============================================================================
+  A generalist                     tool_calls/run mean=4.240 median=4.0  dup_tool_calls/run mean=1.288 frac_runs_with_dup=0.548
+  B specialized                    tool_calls/run mean=4.112 median=4.0  dup_tool_calls/run mean=1.044 frac_runs_with_dup=0.492
+  C specialized_length_matched     tool_calls/run mean=4.080 median=4.0  dup_tool_calls/run mean=1.128 frac_runs_with_dup=0.536
+
+  Tool calls & iters per agent (mean):
+  [A]
+     agent0 generalist : tool_calls=2.712 iters=3.712
+     agent1 generalist : tool_calls=0.836 iters=1.836
+     agent2 generalist : tool_calls=0.692 iters=1.692
+  [B]
+     agent0 retriever  : tool_calls=2.524 iters=3.524
+     agent1 solver     : tool_calls=0.444 iters=1.444
+     agent2 verifier   : tool_calls=1.144 iters=2.144
+  [C]
+     agent0 retriever  : tool_calls=2.612 iters=3.612
+     agent1 solver     : tool_calls=0.392 iters=1.392
+     agent2 verifier   : tool_calls=1.076 iters=2.076
+
+  Paired task-level tests:
+    tool_calls_total: A-B med=+0.000(holm=1)  B-C med=+0.300(holm=1)  A-C med=+0.000(holm=1)
+    dup_tool_calls: A-B med=+0.000(holm=0.0957)  B-C med=+0.000(holm=0.437)  A-C med=+0.000(holm=0.437)
+
+  Tool usage counts by (condition, role):  (rule: exact tool+argument repeat within an agent = duplicate)
+    A/generalist : {'lookup': 985, 'calculator': 75}
+    B/retriever  : {'lookup': 590, 'calculator': 41}
+    B/solver     : {'lookup': 99, 'calculator': 12}
+    B/verifier   : {'lookup': 276, 'calculator': 10}
+    C/retriever  : {'lookup': 598, 'calculator': 55}
+    C/solver     : {'lookup': 82, 'calculator': 16}
+    C/verifier   : {'lookup': 250, 'calculator': 19}
+
+==============================================================================
+PHASE 6 - HANDOFF BEHAVIOR (handoffs fixed at 2; we study what happens AROUND them)
+==============================================================================
+  Metric = Jaccard word-overlap between consecutive agent outputs (automatically measured).
+  A generalist                     overlap a0->a1 mean=0.521  a1->a2 mean=0.624  max mean=0.701
+  B specialized                    overlap a0->a1 mean=0.403  a1->a2 mean=0.564  max mean=0.630
+  C specialized_length_matched     overlap a0->a1 mean=0.415  a1->a2 mean=0.578  max mean=0.644
+    ov_01: A-B med=-0.123(holm=4.33e-05)  B-C med=+0.020(holm=0.598)  A-C med=-0.106(holm=0.00183)
+    ov_12: A-B med=-0.088(holm=0.117)  B-C med=+0.009(holm=0.521)  A-C med=-0.070(holm=0.151)
+
+  MANUAL-INSPECTION SAMPLE (illustrative, NOT a metric): SAME task across A/B/C -> task_id=HA01, run_index=0
+    [A generalist] task=HA01
+       generalist  (tcalls=2): FINAL_ANSWER: The amount paid after all discounts and including the actual sales tax is $1938.80.
+       generalist  (tcalls=0): TOOL_RESULT: lookup | 3 nested discounts on a $2,400 item: first 15% off, then $100 off the reduced price, then 8% off the running total. 10% sales tax applies 
+       generalist  (tcalls=0): Let's verify the calculation step by step.  1. First discount: 15% off $2,400.    2400 * 0.15 = 360    2400 - 360 = 2040  2. Second discount: $100 off the reduc
+    [B specialized] task=HA01
+       retriever   (tcalls=4): The price after the third discount is $1,784.80.  Finally, we apply the 10% sales tax: TOOL_CALL: calculator | (1784.80 * (1 + 0.10))
+       solver      (tcalls=0): TOOL_RESULT: 1963.28 FINAL_ANSWER: $1963.28
+       verifier    (tcalls=0): Let's verify the calculation step-by-step.  1. **Initial Price:** $2,400  2. **First Discount (15% off):**    \[    \text{Price after first discount} = 2400 - (
+    [C specialized_length_matched] task=HA01
+       retriever   (tcalls=4): FINAL_ANSWER: $1,784.80
+       solver      (tcalls=0): Let's verify the calculation step-by-step.  1. **First Discount: 15% off the original price of $2,400.**    - 15% of $2,400 is \(0.15 \times 2400 = 360\).    - 
+       verifier    (tcalls=1): The calculation confirms the previous steps. The final amount paid, to the nearest cent, is $1,963.28.  FINAL_ANSWER: $1,963.28
+
+==============================================================================
+PHASE 7 - FAILURE MODES (denominator = 250 runs/condition)
+==============================================================================
+  type           A         B         C   label
+  F1         0.0%     52.0%     44.4%   wrong-responsibility exec (structurally B/C only)
+  F2        78.0%     76.4%     81.2%   retrieval failure (fact missing from agent1)
+  F3        49.6%     46.4%     51.6%   solve-stage answer wrong
+  F4        48.8%     47.6%     50.0%   verification-stage failure
+  F5        22.8%     35.2%     28.4%   handoff info-loss
+  F6        72.4%     59.6%     62.4%   redundant/repeated work (overlap>=0.6)
+  F7         0.0%     32.8%     30.8%   out-of-scope tool use (structurally B/C only)
+  F8        36.8%     37.6%     38.8%   inter-agent correction (final != solve)
+  F9        48.8%     47.6%     50.0%   final answer incorrect
+
+  STRUCTURAL NOTE: F1 & F7 are impossible in A by construction. Observed in B/C:
+    F1: A=0  B=130  C=111
+    F7: A=0  B=82  C=77
+
+  Corrections (F8 proxy) & repeated_work vs correctness:
+    A: corrections mean=0.888  repeated_work mean=0.752  accuracy=0.512
+    B: corrections mean=1.000  repeated_work mean=0.696  accuracy=0.524
+    C: corrections mean=1.056  repeated_work mean=0.712  accuracy=0.500
+
+==============================================================================
+PHASE 8 - LATENCY PATHWAY (what execution variables move WITH latency?)
+==============================================================================
+  Spearman(latency, X): pooled and within-condition (pooled can be confounded by condition).
+    input_tokens       pooled rho=+0.813 CI[+0.779,+0.845] p=1.46e-177 | within A=+0.650 B=+0.917 C=+0.892
+    output_tokens      pooled rho=+0.577 CI[+0.521,+0.632] p=7.44e-68 | within A=+0.408 B=+0.729 C=+0.665
+    total_tokens       pooled rho=+0.824 CI[+0.789,+0.857] p=7.9e-187 | within A=+0.657 B=+0.930 C=+0.907
+    llm_calls          pooled rho=+0.759 CI[+0.713,+0.802] p=1.12e-141 | within A=+0.657 B=+0.871 C=+0.812
+    tool_iters_total   pooled rho=+0.759 CI[+0.713,+0.802] p=1.12e-141 | within A=+0.657 B=+0.871 C=+0.812
+    tool_calls_total   pooled rho=+0.759 CI[+0.713,+0.802] p=1.12e-141 | within A=+0.657 B=+0.871 C=+0.812
+    dup_tool_calls     pooled rho=+0.542 CI[+0.486,+0.595] p=1.36e-58 | within A=+0.457 B=+0.590 C=+0.608
+    max_agent_input    pooled rho=+0.741 CI[+0.706,+0.775] p=1.64e-131 | within A=+0.562 B=+0.869 C=+0.809
+    a0_input           pooled rho=+0.656 CI[+0.615,+0.694] p=2.05e-93 | within A=+0.472 B=+0.792 C=+0.721
+    a0_iters           pooled rho=+0.546 CI[+0.490,+0.598] p=1.27e-59 | within A=+0.422 B=+0.652 C=+0.574
+    repeated_work      pooled rho=-0.137 CI[-0.208,-0.066] p=0.000174 | within A=-0.134 B=-0.138 C=-0.194
+    corrections        pooled rho=+0.410 CI[+0.346,+0.472] p=1.04e-31 | within A=+0.424 B=+0.377 C=+0.468
+  -> largest |pooled Spearman| with latency: total_tokens (rho=+0.824); ranking: total_tokens(+0.82), input_tokens(+0.81), llm_calls(+0.76), tool_iters_total(+0.76), tool_calls_total(+0.76) ...
+     (association only; pooled correlations are additionally confounded by condition.)
+
+  How the leading latency-linked variables differ across conditions (task-paired medians, Holm):
+    latency_seconds : A-B med=-2.96(holm=0.00176)  B-C med=+0.19(holm=0.616)  A-C med=-5.38(holm=0.000374)
+    input_tokens    : A-B med=-1800.20(holm=0.00593)  B-C med=+1287.30(holm=0.314)  A-C med=-33.80(holm=0.357)
+    a0_input        : A-B med=-696.90(holm=0.0103)  B-C med=+661.30(holm=0.0708)  A-C med=-65.00(holm=0.362)
+    a0_iters        : A-B med=-0.20(holm=0.15)  B-C med=+0.20(holm=0.494)  A-C med=+0.00(holm=0.494)
+    llm_calls       : A-B med=+0.00(holm=1)  B-C med=+0.30(holm=1)  A-C med=+0.00(holm=1)
+    output_tokens   : A-B med=-35.10(holm=0.172)  B-C med=-33.50(holm=0.0316)  A-C med=-83.30(holm=0.00173)
+
+  LATENCY TAIL ANALYSIS (is the effect uniform, or driven by catastrophic slow runs?):
+    A: median=24.8s mean=113.6s | p90=343 p95=634 p99=912 max=1448 | >60s=28.8% >100s=21.2% | trimmed10%-mean=48.4s
+    B: median=21.2s mean=25.2s | p90=44 p95=55 p99=78 max=88 | >60s=4.0% >100s=0.0% | trimmed10%-mean=21.3s
+    C: median=22.4s mean=25.5s | p90=46 p95=51 p99=69 max=108 | >60s=2.8% >100s=0.4% | trimmed10%-mean=22.1s
+    catastrophic tail (latency>100s): count & token/call profile:
+      A: n=53  mean_input=19865  mean_llm_calls=8.4  mean_a1_input=5058
+      B: n=0
+      C: n=1  mean_input=54187  mean_llm_calls=14.0  mean_a1_input=20933
+    NOTE: runs are condition-blocked (Phase 0) with no timestamps; part of A's tail MAGNITUDE could be a machine-load artifact of its execution block. Figures above are descriptive only.
+    SHIFT CLASSIFICATION (computed; thresholds median_rel>=15%, tail_share>=50%):
+      A-B: BOTH a median(bulk) shift and a tail shift  (median_diff=+3.7s, median_rel=+17.3%, mean_diff=+88.5s, tail_share_of_mean_gap=+69%, p95_diff=+578s)
+      A-C: primarily a TAIL shift  (median_diff=+2.4s, median_rel=+10.8%, mean_diff=+88.1s, tail_share_of_mean_gap=+70%, p95_diff=+583s)
+      B-C: no large shift of either kind  (median_diff=-1.2s, median_rel=-5.9%, mean_diff=-0.4s, tail_share_of_mean_gap=-91%, p95_diff=+5s)
+
+  SCALING TEST - latency vs input_tokens, power-law exponent b (log-log OLS, bootstrap 95% CI):
+    b>1 => super-linear, CI spanning 1 => indistinguishable from linear, b<1 => sub-linear.
+    pooled  b=+0.771 95%CI[+0.712,+0.836] n=750 -> sub-linear
+    A       b=+0.889 95%CI[+0.734,+1.047] n=250 -> not distinguishable from linear
+    B       b=+0.626 95%CI[+0.586,+0.666] n=250 -> sub-linear
+    C       b=+0.750 95%CI[+0.700,+0.805] n=250 -> sub-linear
+    (pooled is confounded by condition and by the blocked-execution caveat; prefer within-condition b.)
+
+  Latency decomposition (medians):
+    A: latency=24.8s  llm_calls=7.0  input_tok=11314  lat/call=3.66s  lat/1k_in=2.022s
+    B: latency=21.2s  llm_calls=7.0  input_tok=10372  lat/call=3.11s  lat/1k_in=2.035s
+    C: latency=22.4s  llm_calls=7.0  input_tok=12054  lat/call=3.21s  lat/1k_in=1.839s
+
+  Stratified check - latency A vs C within same llm_calls bucket (controls call count):
+    llm_calls=4: A n=11 med=15.1s | C n=17 med=8.9s | delta=-6.2s
+    llm_calls=5: A n=81 med=14.1s | C n=48 med=11.8s | delta=-2.3s
+    llm_calls=6: A n=29 med=18.6s | C n=35 med=15.6s | delta=-2.9s
+    llm_calls=7: A n=50 med=23.5s | C n=62 med=25.4s | delta=+1.9s
+    llm_calls=8: A n=14 med=34.4s | C n=25 med=30.0s | delta=-4.5s
+    llm_calls=9: A n=15 med=36.4s | C n=32 med=35.2s | delta=-1.2s
+    llm_calls=10: A n=14 med=259.2s | C n=19 med=43.8s | delta=-215.4s
+
+==============================================================================
+PHASE 9 - MECHANISM TRIANGULATION
+==============================================================================
+
+  1. Reduced redundant work (repeated_work)
+     A/B: med-0.066 holm=0.104
+     A/C: med-0.057 holm=0.292   <-- length-controlled test
+     B/C: med+0.001 holm=0.622
+     evidence: latency assoc pooled rho=-0.14; within A=-0.13 B=-0.14 C=-0.19
+     VERDICT (from tests): Not supported (no sig. A-B or A-C difference)
+
+  2. Workload redistribution (agent0 input load)
+     A/B: med-697 holm=0.0103
+     A/C: med-65 holm=0.362   <-- length-controlled test
+     B/C: med+661 holm=0.0708
+     evidence: see Phase 2 per-agent means
+     VERDICT (from tests): Confounded with prompt length (A-B sig, A-C n.s.)
+
+  3. Reduced max per-agent accumulated input-token load
+     A/B: med-1206 holm=0.000297
+     A/C: med-171 holm=0.237   <-- length-controlled test
+     B/C: med+940 holm=0.0595
+     evidence: observed per-agent input shares in Phase 4
+     VERDICT (from tests): Confounded with prompt length (A-B sig, A-C n.s.)
+
+  4. More targeted tool use (total tool calls)
+     A/B: med+0.000 holm=1
+     A/C: med+0.000 holm=1   <-- length-controlled test
+     B/C: med+0.300 holm=1
+     evidence: see Phase 5 per-role tool counts
+     VERDICT (from tests): Not supported (no sig. A-B or A-C difference)
+
+  5. Fewer repeated tool calls (exact dup tool calls)
+     A/B: med+0.000 holm=0.0957
+     A/C: med+0.000 holm=0.437   <-- length-controlled test
+     B/C: med+0.000 holm=0.437
+     evidence: exact tool+argument repeat within an agent
+     VERDICT (from tests): Not supported (no sig. A-B or A-C difference)
+
+  6. Reduced corrections (inter-agent answer changes)
+     A/B: med+0.100 holm=0.203
+     A/C: med+0.200 holm=0.0181   <-- length-controlled test
+     B/C: med+0.000 holm=0.389
+     evidence: corrections run-level
+     VERDICT (from tests): Supported under length control (A-C Holm-sig)
+
+  7. Role interaction / handoff overlap (a0->a1 output overlap)
+     A/B: med-0.123 holm=4.33e-05
+     A/C: med-0.106 holm=0.00183   <-- length-controlled test
+     B/C: med+0.020 holm=0.598
+     evidence: jaccard overlap of consecutive outputs
+     VERDICT (from tests): Supported under length control (A-C Holm-sig)
+
+  8. Forward-pass volume: llm_calls / output tokens (generation load)
+     A/B: calls+0.00(holm=1) out-35(holm=0.17)
+     A/C: calls+0.00(holm=1) out-83(holm=0.0017)   <-- length-controlled test
+     B/C: calls+0.30(holm=1) out-33(holm=0.032)
+     evidence: largest |pooled Spearman| with latency = total_tokens (rho=+0.82); association only
+     VERDICT (from tests): Supported under length control (A-C Holm-sig)
+
+  NOTE: 'verdict' reflects only whether the candidate's own metric differs across conditions (and survives length control). It is NOT a latency-causation claim; latency links are reported separately as associations in Phase 8.
+plots skipped: No module named 'matplotlib'
+
+##############################################################################
+CONCISE SUMMARY
+##############################################################################
+DATA VALIDATION
+  750 total | A=250 B=250 C=250 | truncated=1 timeout=0 error=0
+  verdict: PASS
+PRIMARY FINDINGS (run-level median | task-paired Holm p)
+  accuracy  A=0.512 B=0.524 C=0.500  | A-C holm=1 (no sig. accuracy change)
+  latency   A=24.8s B=21.2s C=22.4s  | A-B holm=0.00176  A-C holm=0.000374  B-C holm=0.616
+  input_tok A=11314 B=10372 C=12054  | A-C holm=0.357
+AGENT WORKLOAD (accumulated input-token load per agent; not handoff/context size)
+  A a0_load=9152 a1_load=3697 a2_load=2910  a0_iters=3.71
+  B a0_load=7964 a1_load=1694 a2_load=3564  a0_iters=3.52
+  C a0_load=8495 a1_load=1750 a2_load=3735  a0_iters=3.61
+REDUNDANT WORK
+  repeated_work vs latency: pooled rho=-0.14 (A=-0.13 B=-0.14 C=-0.19)
+ACCUMULATED INPUT-TOKEN LOAD (Phase 4; summed over tool iterations, not handoff size)
+  max_agent_load A-C median diff=-171
+TOOL USE
+  dup_tool_calls A-C median diff=+0.000 (holm=0.437)
+FAILURE MODES
+  F1 A=0 B=130 C=111 | F7 A=0 B=82 C=77 (F1/F7 structural to B/C)
+LATENCY PATHWAY
+  latency medians A=24.8 B=21.2 C=22.4s; means A=114 B=25 C=26s; runs>100s A=21.2% B=0.0% C=0.4%
+  shift classification (computed): A-B BOTH a median(bulk) shift and a tail shift; A-C primarily a TAIL shift
+  largest |pooled rho| with latency = total_tokens (rho=+0.82) [association]
+  scaling test (latency~accumulated input load): A b=0.89(not distinguishable from linear) B b=0.63(sub-linear) C b=0.75(sub-linear) -> NOT distinguishable from linear
+  CONFOUND: runs condition-blocked, no timestamps -> A's tail MAGNITUDE may be partly machine-load (tokens/accuracy unaffected)
+MECHANISM CONCLUSION  (evidence hierarchy)
+  OBSERVED: specialization changes accumulated per-agent input-token workload (middle-agent load A/B=2.2x).
+  ASSOCIATION: accumulated input-token workload is associated with latency (top correlate total_tokens rho=+0.82).
+  PLAUSIBLE MECHANISM: role specialization may constrain context/workload accumulation (not tested).
+  NOT ESTABLISHED: specialization causally reduces latency through bounded context growth.
+  accuracy unchanged; token advantage mostly disappears vs length-matched C.
+
+Outputs in /Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/v2/mechanism:  summary.json, primary_metrics.csv, agent_level.csv, correlations.csv,
+  failure_analysis.csv, handoff_analysis.csv, interpretation.md, plots/

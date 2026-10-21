@@ -1,0 +1,38 @@
+# v2 experiment configuration — prompt-length-control study (harder tasks + 3 conditions).
+# FROZEN before the confirmatory run. Separate from v1 config/experiment.yaml (untouched).
+# The ONLY new manipulation vs v1: condition C adds semantically-inert, length-matching
+# padding (config/prompts/pad_*.txt). Model and topology are held constant with v1.
+
+experiment_version: "v2_prompt_control"
+
+model: "qwen2.5:7b"            # held constant with v1
+temperature: 0.7              # held constant with v1
+num_ctx: 16384               # RAISED from v1's 8192: v2 contexts are ~10x larger (multi-hop
+                              # distractor paragraphs); 8192 would truncate (C5). Identical across
+                              # all 3 conditions, so non-confounding. (See v2 pilot report.)
+num_predict: 1024             # held constant with v1
+top_p: 0.9                   # held constant with v1
+seed_base: null
+
+agent_count: 3               # held constant
+control_flow: "strict_linear"
+max_tool_iters: 4            # held constant with v1
+
+runs_per_task: 5
+seeds: [11, 22, 33, 44, 55]   # held constant with v1
+
+ollama_url: "http://localhost:11434/api/chat"
+request_timeout_s: 1800       # RAISED from v1's 300 (pilot finding): generalist on 4-hop tasks
+                              # exceeded 600s on CPU; 600 would convert slow-but-valid runs into
+                              # timeouts, biasing generalist reliability down. Cutoff only — does
+                              # not alter any successful run's output. Timeouts are LOGGED (runner_v2).
+
+tasks_path: "data/tasks_v2.jsonl"
+out_dir: "results/v2"
+pilot_dir: "results/v2_pilot"
+
+conditions: ["generalist", "specialized", "specialized_length_matched"]
+
+# Pilot: 8 tasks (3 MuSiQue spanning 2/3/4-hop + 3 HotpotQA + 2 hand) x 2 runs x 3 conditions
+pilot_runs_per_task: 2
+pilot_task_ids: ["MQ01", "MQ09", "MQ16", "HP01", "HP02", "HP03", "HA01", "HA10"]

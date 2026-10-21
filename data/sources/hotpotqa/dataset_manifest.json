@@ -1,0 +1,10 @@
+{
+  "source": "hotpot_dev_distractor_v1.json",
+  "source_sha256": "4e9ecb5c8d3b719f624d66b60f8d56bf227f03914f5f0753d6fa1b359d7104ea",
+  "num_questions": 300,
+  "num_corpus_documents": 2988,
+  "sample_size": 300,
+  "random_seed": 42,
+  "document_id": "title",
+  "corpus_scope": "contexts of sampled questions"
+}

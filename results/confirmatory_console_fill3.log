@@ -1,0 +1,5 @@
+Planned runs: 300 (2 conditions x 30 tasks x 5 runs). Already done: 297
+  [123/300] generalist::T25::run2 correct=True tok=4347 165.292s fails=['F2']
+  [181/300] specialized::T07::run0 correct=True tok=2472 51.262s fails=['F1', 'F2', 'F7']
+  [209/300] specialized::T12::run3 correct=True tok=3446 63.53s fails=['F1', 'F2', 'F6', 'F7']
+Done.

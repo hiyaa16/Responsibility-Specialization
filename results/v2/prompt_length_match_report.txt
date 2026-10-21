@@ -1,0 +1,29 @@
+PROMPT-LENGTH MATCHING REPORT (condition C = specialized_length_matched)
+Tokenizer: qwen2.5:7b via Ollama prompt_eval_count (src/tokens.py)
+Tolerance: +/-2%
+Generalist per-agent system prompt (preamble+R+S+V): full=486 tok, isolated=451 tok  <-- TARGET
+
+[R -> pad_retrieve.txt]  sha256=be965aa3f3c2e974
+    specialized (preamble+R) isolated tokens : 329
+    + padding isolated tokens                       : 123
+    padded system prompt: full=487 (target 486), isolated=452 (target 451)
+    difference vs target: +0.21%   OK
+
+[S -> pad_solve.txt]  sha256=50a0968ac10c0734
+    specialized (preamble+S) isolated tokens : 291
+    + padding isolated tokens                       : 160
+    padded system prompt: full=486 (target 486), isolated=451 (target 451)
+    difference vs target: +0.00%   OK
+
+[V -> pad_verify.txt]  sha256=a733b9ca8e2c969c
+    specialized (preamble+V) isolated tokens : 305
+    + padding isolated tokens                       : 146
+    padded system prompt: full=486 (target 486), isolated=451 (target 451)
+    difference vs target: +0.00%   OK
+
+Condition totals (sum of 3 agents, isolated system tokens):
+    A generalist                 : 1353
+    B specialized                : 925
+    C specialized_length_matched : 1354  (vs A: +0.07%)
+
+RESULT: ALL AGENTS WITHIN TOLERANCE

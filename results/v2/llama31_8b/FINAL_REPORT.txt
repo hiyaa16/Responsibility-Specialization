@@ -1,0 +1,47 @@
+====================================================================================
+FINAL REPORT — Llama-3.1-8B v2 canonicalization + Qwen-vs-Llama replication
+====================================================================================
+
+1. Raw Llama records                 : 777
+2. Removed duplicate/retry records   : 27
+3. Canonical Llama records           : 750  (expected 750)
+4. Counts by condition (clean):
+     specialized_length_matched  : 250
+     specialized                 : 250
+     generalist                  : 250
+5. Ambiguous (unresolved) groups     : 0
+   Flagged (validity-tied, resolved by provenance only) groups : 25
+     - of which all-truncated (both executions truncated) : 1
+6. Canonicalization validation       : PASS (analysis/validate_clean_llama.py, exit=0)
+
+7. Final Qwen vs Llama A-C latency (recomputed from the clean 750-run dataset):
+     Qwen : median diff = -5.3821 s   Holm p = 0.000373644   rank-biserial = -0.602   => significant
+     Llama: median diff = +0.5714 s   Holm p = 0.443267   rank-biserial = +0.126   => not significant
+     (Provisional 777-run numbers were Llama +0.1276 s, p=1.0 — NOT reused; the above are recomputed.)
+
+8. A-C latency replication verdict   : NOT REPLICATED (Llama n.s. and opposite direction)
+
+9. Replicated mechanism-level effects (A-C, both models, Holm-corrected):
+     corrections           : Qwen med=+0.200 (holm=0.0181) | Llama med=+0.200 (holm=0.0284)  ->  REPLICATED
+     first_handoff_overlap : Qwen med=-0.106 (holm=0.00183) | Llama med=-0.037 (holm=0.0135)  ->  REPLICATED
+     output_tokens         : Qwen med=-83.300 (holm=0.00173) | Llama med=-201.900 (holm=0.232)  ->  PARTIALLY REPLICATED (same direction, not Holm-significant on Llama)
+     repeated_work         : Qwen med=-0.057 (holm=0.292) | Llama med=-0.045 (holm=0.0196)  ->  N/A (no significant Qwen A-C effect to replicate)
+     accuracy              : Qwen med=+0.000 (holm=1) | Llama med=+0.000 (holm=0.365)  ->  N/A (no significant Qwen A-C effect to replicate)
+     total_tokens          : Qwen med=-53.800 (holm=0.356) | Llama med=+3065.500 (holm=0.000261)  ->  N/A (no significant Qwen A-C effect to replicate)
+     input_tokens          : Qwen med=-33.800 (holm=0.357) | Llama med=+2929.500 (holm=0.000107)  ->  N/A (no significant Qwen A-C effect to replicate)
+     llm_calls             : Qwen med=+0.000 (holm=1) | Llama med=+1.100 (holm=2.05e-05)  ->  N/A (no significant Qwen A-C effect to replicate)
+     tool_calls_total      : Qwen med=+0.000 (holm=1) | Llama med=+1.100 (holm=2.26e-05)  ->  N/A (no significant Qwen A-C effect to replicate)
+     max_agent_input       : Qwen med=-171.300 (holm=0.237) | Llama med=+1549.500 (holm=5.38e-05)  ->  N/A (no significant Qwen A-C effect to replicate)
+
+10. Remaining data-quality concerns:
+     - 1 duplicate group (specialized/MQ09/run2) had BOTH executions truncated; the
+       earliest-timestamp original was kept on provenance grounds only (no outcome used).
+       The retained record is still truncated — a genuine hard case for Llama, not an error.
+     - 27 of 750 intended runs were re-executed during collection (appended retries);
+       canonicalization kept the original scheduled execution for each. Raw log preserved.
+     - Llama shows substantially higher truncation/verbosity than Qwen (larger token
+       footprints, A-C token/llm_call/tool_call DIFFERENCES that have no Qwen counterpart),
+       so token-level effects are model-specific and not cross-model replication claims.
+
+Principle check: numbers recomputed from the clean 750-run dataset; conclusions follow
+the computed tests. The goal was a valid non-cherry-picked dataset, not agreement.

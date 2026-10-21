@@ -1,0 +1,51 @@
+# Llama-3.1-8B REPLICATION of the v2 prompt-length-control study.
+#
+# PURPOSE: test whether the responsibility-specialization effect observed on qwen2.5:7b
+# replicates on a different model family. This is NOT a new design.
+#
+# EVERYTHING here is a byte-for-byte copy of config/experiment_v2.yaml EXCEPT:
+#   (1) model:            qwen2.5:7b            -> llama3.1:8b
+#   (2) experiment_version: v2_prompt_control   -> v2_llama31_8b
+#   (3) out_dir/pilot_dir: results/v2[...]       -> results/v2/llama31_8b[...]
+#   (4) NEW keys for execution-order randomization: interleave, execution_seed
+# Same 50 tasks, same prompts, same padding, same tools, same topology, same handoffs,
+# same temperature, same seeds, same num_ctx/num_predict/top_p, same timeout.
+# The frozen condition-C padding is NOT re-sized for Llama (that would change the prompts);
+# the actual per-agent token budgets under the Llama tokenizer are MEASURED and reported
+# at validation time instead.
+
+experiment_version: "v2_llama31_8b"
+
+model: "llama3.1:8b"          # <-- THE ONLY substantive change vs experiment_v2.yaml
+temperature: 0.7              # held constant
+num_ctx: 16384               # held constant with the Qwen v2 run
+num_predict: 1024             # held constant
+top_p: 0.9                   # held constant
+seed_base: null
+
+agent_count: 3               # held constant
+control_flow: "strict_linear"
+max_tool_iters: 4            # held constant
+
+runs_per_task: 5             # held constant -> 50 x 5 x 3 = 750 runs
+seeds: [11, 22, 33, 44, 55]   # held constant (per-run seed stays tied to run_index)
+
+ollama_url: "http://localhost:11434/api/chat"
+request_timeout_s: 1800       # held constant with the Qwen v2 run
+
+tasks_path: "data/tasks_v2.jsonl"   # SAME 50 tasks, same IDs, same wording, same order
+out_dir: "results/v2/llama31_8b"            # NEW: never collides with results/v2/runs.jsonl
+pilot_dir: "results/v2/llama31_8b_pilot"    # NEW
+
+conditions: ["generalist", "specialized", "specialized_length_matched"]
+
+# ---- NEW: execution-order randomization (fixes the Qwen block-execution confound) ----
+# interleave=true shuffles the full (condition x task x run) job list with execution_seed
+# so A/B/C are interleaved instead of run in blocks. This changes ONLY the order in which
+# jobs execute; task assignment, condition, run_index and per-run seed are unchanged.
+interleave: true
+execution_seed: 20261007
+
+# Pilot: 3 tasks spanning sources (MuSiQue 2-hop, HotpotQA, hand-authored) x 1 run x 3 conditions = 9 runs
+pilot_runs_per_task: 1
+pilot_task_ids: ["MQ01", "HP01", "HA01"]

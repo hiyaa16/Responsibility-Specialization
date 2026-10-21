@@ -1,0 +1,121 @@
+v2 analysis of 10 runs | conditions=['generalist', 'specialized', 'specialized_length_matched'] | dir=D:\internship2026\responsibility-specialization\results/v2_pilot_smoke
+==========================================================================
+PRIMARY: 3-condition task-level analysis (Friedman + pairwise Wilcoxon/Holm)
+==========================================================================
+
+[success]  n_tasks=3  conditions=['A', 'B', 'C']
+  A generalist                   mean=0.3333  median=0.0000
+  B specialized                  mean=0.3333  median=0.0000
+  C specialized_length_matched   mean=0.3333  median=0.0000
+  Friedman chi2=nan  p=nan
+    A-B: median(2nd-1st)=+0.0000  rank-biserial=+0.000  95%CI[+0.0000,+0.0000]  p=1 adj=1 
+    B-C: median(2nd-1st)=+0.0000  rank-biserial=+0.000  95%CI[+0.0000,+0.0000]  p=1 adj=1 
+    A-C: median(2nd-1st)=+0.0000  rank-biserial=+0.000  95%CI[+0.0000,+0.0000]  p=1 adj=1 
+
+[total_tokens]  n_tasks=3  conditions=['A', 'B', 'C']
+  A generalist                   mean=7274.0000  median=6754.0000
+  B specialized                  mean=8182.1667  median=2978.0000
+  C specialized_length_matched   mean=9613.6667  median=7391.0000
+  Friedman chi2=2.000  p=0.3679
+    A-B: median(2nd-1st)=-608.0000  rank-biserial=+0.000  95%CI[-4234.5000,+7567.0000]  p=1 adj=1 
+    B-C: median(2nd-1st)=+904.0000  rank-biserial=+0.333  95%CI[-1481.0000,+4871.5000]  p=0.75 adj=1 
+    A-C: median(2nd-1st)=+637.0000  rank-biserial=+1.000  95%CI[+296.0000,+6086.0000]  p=0.25 adj=0.75 
+
+[output_tokens]  n_tasks=3  conditions=['A', 'B', 'C']
+  A generalist                   mean=463.3333  median=395.0000
+  B specialized                  mean=427.6667  median=473.0000
+  C specialized_length_matched   mean=422.6667  median=288.0000
+  Friedman chi2=0.667  p=0.7165
+    A-B: median(2nd-1st)=+142.0000  rank-biserial=+0.000  95%CI[-502.0000,+253.0000]  p=1 adj=1 
+    B-C: median(2nd-1st)=-185.0000  rank-biserial=+0.000  95%CI[-305.0000,+475.0000]  p=1 adj=1 
+    A-C: median(2nd-1st)=-27.0000  rank-biserial=-0.333  95%CI[-163.0000,+68.0000]  p=0.75 adj=1 
+
+[latency_seconds]  n_tasks=3  conditions=['A', 'B', 'C']
+  A generalist                   mean=141.6000  median=151.3000
+  B specialized                  mean=168.4000  median=90.5000
+  C specialized_length_matched   mean=199.5667  median=183.8000
+  Friedman chi2=0.667  p=0.7165
+    A-B: median(2nd-1st)=+21.7000  rank-biserial=+0.333  95%CI[-95.8000,+154.5000]  p=0.75 adj=1 
+    B-C: median(2nd-1st)=-2.8000  rank-biserial=+0.000  95%CI[-32.0000,+128.3000]  p=1 adj=1 
+    A-C: median(2nd-1st)=+32.5000  rank-biserial=+0.667  95%CI[-10.3000,+151.7000]  p=0.5 adj=1 
+
+==========================================================================
+RELIABILITY EQUIVALENCE (TOST, pre-registered margin +/-0.05)
+==========================================================================
+  A-B: mean diff=+0.0000  90%CI[-0.0000,+0.0000]  TOST p=2e-22  -> EQUIVALENT
+  B-C: mean diff=+0.0000  90%CI[-0.0000,+0.0000]  TOST p=2e-22  -> EQUIVALENT
+  A-C: mean diff=+0.0000  90%CI[-0.0000,+0.0000]  TOST p=2e-22  -> EQUIVALENT
+  NOTE: a non-significant difference is not proof of equivalence; only a passing TOST is.
+
+==========================================================================
+Overall per-condition summary (task-mean bootstrap 95% CI)
+==========================================================================
+
+[A generalist]  runs=3  timeouts=0  errors=0
+  success=0.333 (task-mean 95%CI 0.000-1.000)
+  mean total_tokens=7274  output_tokens=463  system_prompt_tokens=1353
+  mean latency=141.6s  median=151.3s  mean llm_calls=6.33
+
+[B specialized]  runs=4  timeouts=0  errors=1
+  success=0.250 (task-mean 95%CI 0.000-1.000)
+  mean total_tokens=9022  output_tokens=519  system_prompt_tokens=694
+  mean latency=186.9s  median=111.0s  mean llm_calls=6.67
+
+[C specialized_length_matched]  runs=3  timeouts=0  errors=0
+  success=0.333 (task-mean 95%CI 0.000-1.000)
+  mean total_tokens=9614  output_tokens=423  system_prompt_tokens=1354
+  mean latency=199.6s  median=183.8s  mean llm_calls=7.33
+
+--------------------------------------------------
+success by source x condition
+condition     generalist  specialized  specialized_length_matched
+source                                                           
+handauthored         0.0          0.0                         0.0
+hotpotqa             1.0          1.0                         1.0
+
+--------------------------------------------------
+success by difficulty x condition
+condition   generalist  specialized  specialized_length_matched
+difficulty                                                     
+hard             0.333         0.25                       0.333
+
+==========================================================================
+TOKEN DECOMPOSITION (critical question: does efficiency survive length control? B vs C)
+==========================================================================
+  system_prompt_tokens   A=1353  B=925  C=1354
+  input_tokens           A=6811  B=8503  C=9191
+  output_tokens          A=463  B=519  C=423
+  total_tokens           A=7274  B=9022  C=9614
+
+==========================================================================
+Failure-type frequency per condition (denominator = runs)
+==========================================================================
+
+[A generalist] (n=3)
+  F2: 2 (66.7%)
+  F3: 1 (33.3%)
+  F4: 2 (66.7%)
+  F6: 3 (100.0%)
+  F8: 1 (33.3%)
+  F9: 2 (66.7%)
+
+[B specialized] (n=4)
+  F1: 2 (50.0%)
+  F2: 3 (75.0%)
+  F3: 1 (25.0%)
+  F4: 2 (50.0%)
+  F6: 2 (50.0%)
+  F7: 2 (50.0%)
+  F9: 3 (75.0%)
+
+[C specialized_length_matched] (n=3)
+  F1: 2 (66.7%)
+  F2: 3 (100.0%)
+  F3: 1 (33.3%)
+  F4: 2 (66.7%)
+  F6: 1 (33.3%)
+  F7: 2 (66.7%)
+  F8: 2 (66.7%)
+  F9: 2 (66.7%)
+
+  NOTE: F1 (wrong-responsibility) & F7 (out-of-role tool use) are structurally only possible in B and C (generalists own all roles). High F2 with high accuracy => inspect for heuristic over-trigger (Part 17); do NOT change the classifier here.
