@@ -1,8 +1,8 @@
 ==========================================================================================
 CROSS-MODEL REPLICATION  —  Qwen-2.5-7B  vs  Llama-3.1-8B  (v2 study)
 ==========================================================================================
-Qwen runs  = 750   (/Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/v2/runs.jsonl)
-Llama runs = 750   (/Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/v2/llama31_8b/runs_clean.jsonl)
+Qwen runs  = 750   (D:\internship2026\responsibility-specialization\results\v2\runs.jsonl)
+Llama runs = 750   (D:\internship2026\responsibility-specialization\results\v2\llama31_8b\runs_clean.jsonl)
 Statistics: task-level paired Wilcoxon, Holm across the 3 pairs per metric; effect size = matched-pairs rank-biserial; 95% bootstrap CI (all identical to mechanism_v2).
 
 CROSS-MODEL TABLE (A = generalist, C = specialized_length_matched; A-C is the key test)
@@ -45,4 +45,4 @@ LATENCY<->TOKEN ASSOCIATION (pooled Spearman):
 
 INTERPRETATION RULES ENFORCED: verdicts are computed from the tests above. A-C 'REPLICATED' => the latency difference persisted after prompt-length matching on BOTH models. 'NOT REPLICATED' => the effect did not reproduce under Llama. 'MODEL-DEPENDENT' => direction reversed. No causal-reduction or context-size/token/tool/LLM-call reduction claim is made here; associations only.
 
-Outputs -> /Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/v2/llama31_8b/compare/  (cross_model_table.csv, replication.csv, per_model_metrics.csv, summary.json)
+Outputs -> D:\internship2026\responsibility-specialization\results\v2\llama31_8b\compare/  (cross_model_table.csv, replication.csv, per_model_metrics.csv, summary.json)

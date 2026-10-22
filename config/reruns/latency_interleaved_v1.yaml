@@ -1,0 +1,31 @@
+kind: latency
+experiment_version: latency_interleaved_v1
+
+tasks_path: data/tasks_v2.jsonl
+
+model_tags:
+  qwen2_5_7b:
+    ollama_model: qwen2.5:7b
+
+ollama_url: http://localhost:11434
+temperature: 0.7
+top_p: 0.9
+num_ctx: 16384
+num_predict: 1024
+max_tool_iters: 4
+
+conditions:
+  - generalist
+  - specialized
+  - specialized_length_matched
+
+pilot_task_ids:
+  - MQ01
+  - HP01
+  - HA01
+
+pilot_repetitions: 1
+runs_per_task: 5
+task_seeds: [11, 22, 33, 44, 55]
+schedule_seed: 20261022
+request_timeout_s: 1800

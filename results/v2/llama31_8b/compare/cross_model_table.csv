@@ -1,13 +1,13 @@
 metric,Qwen_A,Qwen_C,Qwen_A-C_meddiff,Qwen_A-C_holm,Llama_A,Llama_C,Llama_A-C_meddiff,Llama_A-C_holm,A-C_replication
-accuracy,0.512,0.5,0.0,1.0,0.452,0.392,0.0,0.3650004034024992,N/A (no significant Qwen A-C effect to replicate)
+accuracy,0.512,0.5,0.0,1.0,0.452,0.392,0.0,0.3650004034024996,N/A (no significant Qwen A-C effect to replicate)
 median_latency_s,24.8425,22.4175,-5.3821,0.0003736442241422111,47.255,47.5665,0.5714,0.44326672141018975,NOT REPLICATED (Llama n.s. and opposite direction)
 mean_latency_s,113.6237,25.5494,-5.3821,0.0003736442241422111,54.8722,58.4064,0.5714,0.44326672141018975,NOT REPLICATED (Llama n.s. and opposite direction)
 p95_latency_s,633.8694,50.8568,-5.3821,0.0003736442241422111,104.008,134.198,0.5714,0.44326672141018975,NOT REPLICATED (Llama n.s. and opposite direction)
 total_tokens,16366.932,14456.004,-53.8,0.3562020955817218,24289.564,28391.176,3065.5,0.0002605915683489002,N/A (no significant Qwen A-C effect to replicate)
 input_tokens,15758.644,13979.58,-33.8,0.35718707191412413,22811.504,27009.228,2929.5,0.00010749149341293673,N/A (no significant Qwen A-C effect to replicate)
 output_tokens,608.288,476.424,-83.3,0.0017336666330936756,1478.06,1381.948,-201.9,0.2323909961453623,"PARTIALLY REPLICATED (same direction, not Holm-significant on Llama)"
-llm_calls,7.24,7.08,0.0,1.0,10.772,11.948,1.1,2.047038116095691e-05,N/A (no significant Qwen A-C effect to replicate)
-tool_calls,4.24,4.08,0.0,1.0,7.772,8.948,1.1,2.260235355497768e-05,N/A (no significant Qwen A-C effect to replicate)
+llm_calls,7.24,7.08,0.0,1.0,10.772,11.948,1.1,2.0470381160956905e-05,N/A (no significant Qwen A-C effect to replicate)
+tool_calls,4.24,4.08,0.0,1.0,7.772,8.948,1.1,2.2602353554977685e-05,N/A (no significant Qwen A-C effect to replicate)
 repeated_work,0.7524,0.7119,-0.057,0.2920367228994465,0.4385,0.3977,-0.045,0.01957561560343457,N/A (no significant Qwen A-C effect to replicate)
 corrections,0.888,1.056,0.2,0.018077831022769233,0.256,0.396,0.2,0.028439653227886542,REPLICATED
 first_handoff_overlap,0.5206,0.4154,-0.1065,0.0018298734786377224,0.3174,0.2695,-0.037,0.013460919338900368,REPLICATED

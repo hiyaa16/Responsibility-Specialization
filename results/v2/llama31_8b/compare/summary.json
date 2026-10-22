@@ -1,7 +1,7 @@
 {
   "qwen": {
     "n_runs": 750,
-    "run_dir": "/Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/v2",
+    "run_dir": "D:\\internship2026\\responsibility-specialization\\results\\v2",
     "per_condition": {
       "accuracy": {
         "A": {
@@ -319,8 +319,8 @@
           "rank_biserial": -0.39215686274509803,
           "ci95_lo": -134.91000000000003,
           "ci95_hi": -31.828000000000003,
-          "p_raw": 0.015807338586039922,
-          "p_holm": 0.031614677172079844
+          "p_raw": 0.01580733858603993,
+          "p_holm": 0.03161467717207986
         },
         "A-C": {
           "pair": "A-C",
@@ -448,8 +448,8 @@
           "rank_biserial": 0.2926829268292683,
           "ci95_lo": -0.01600000000000001,
           "ci95_hi": 0.23999999999999996,
-          "p_raw": 0.10150369740950063,
-          "p_holm": 0.20300739481900126
+          "p_raw": 0.10150369740950065,
+          "p_holm": 0.2030073948190013
         },
         "B-C": {
           "pair": "B-C",
@@ -470,7 +470,7 @@
           "rank_biserial": 0.49634146341463414,
           "ci95_lo": 0.06,
           "ci95_hi": 0.27999999999999997,
-          "p_raw": 0.006025943674256412,
+          "p_raw": 0.006025943674256411,
           "p_holm": 0.018077831022769233
         }
       },
@@ -741,7 +741,7 @@
     "latency_corr": {
       "total_tokens": {
         "pooled_rho": 0.8241148707331853,
-        "pooled_p": 7.902995613230986e-187,
+        "pooled_p": 7.902995613231018e-187,
         "pooled_ci": [
           0.7893468137465733,
           0.8566916080264634
@@ -754,7 +754,7 @@
       },
       "input_tokens": {
         "pooled_rho": 0.8126146069054715,
-        "pooled_p": 1.4590645766195047e-177,
+        "pooled_p": 1.4590645766194887e-177,
         "pooled_ci": [
           0.779022011212689,
           0.8449970748410214
@@ -767,7 +767,7 @@
       },
       "output_tokens": {
         "pooled_rho": 0.5772521694431582,
-        "pooled_p": 7.443724489753473e-68,
+        "pooled_p": 7.443724489753552e-68,
         "pooled_ci": [
           0.5207994589441748,
           0.6319638650418666
@@ -831,7 +831,7 @@
   },
   "llama": {
     "n_runs": 750,
-    "run_dir": "/Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/v2/llama31_8b",
+    "run_dir": "D:\\internship2026\\responsibility-specialization\\results\\v2\\llama31_8b",
     "per_condition": {
       "accuracy": {
         "A": {
@@ -1020,8 +1020,8 @@
           "rank_biserial": -0.2571428571428571,
           "ci95_lo": -0.1361,
           "ci95_hi": 0.016,
-          "p_raw": 0.1825002017012496,
-          "p_holm": 0.3650004034024992
+          "p_raw": 0.1825002017012498,
+          "p_holm": 0.3650004034024996
         }
       },
       "latency_seconds": {
@@ -1173,8 +1173,8 @@
           "rank_biserial": 0.44727891156462585,
           "ci95_lo": 0.18799999999999972,
           "ci95_hi": 0.836,
-          "p_raw": 0.0069496647964201,
-          "p_holm": 0.0069496647964201
+          "p_raw": 0.0069496647964200995,
+          "p_holm": 0.0069496647964200995
         },
         "B-C": {
           "pair": "B-C",
@@ -1184,8 +1184,8 @@
           "rank_biserial": 0.48639455782312924,
           "ci95_lo": 0.2718999999999999,
           "ci95_hi": 1.052,
-          "p_raw": 0.003332227255855472,
-          "p_holm": 0.006664454511710944
+          "p_raw": 0.0033322272558554715,
+          "p_holm": 0.006664454511710943
         },
         "A-C": {
           "pair": "A-C",
@@ -1195,8 +1195,8 @@
           "rank_biserial": 0.7457482993197279,
           "ci95_lo": 0.7839999999999998,
           "ci95_hi": 1.572,
-          "p_raw": 6.8234603869856355e-06,
-          "p_holm": 2.047038116095691e-05
+          "p_raw": 6.823460386985635e-06,
+          "p_holm": 2.0470381160956905e-05
         }
       },
       "tool_calls_total": {
@@ -1208,8 +1208,8 @@
           "rank_biserial": 0.4421768707482993,
           "ci95_lo": 0.18799999999999975,
           "ci95_hi": 0.836,
-          "p_raw": 0.00763680480387415,
-          "p_holm": 0.00763680480387415
+          "p_raw": 0.007636804803874151,
+          "p_holm": 0.007636804803874151
         },
         "B-C": {
           "pair": "B-C",
@@ -1219,8 +1219,8 @@
           "rank_biserial": 0.48639455782312924,
           "ci95_lo": 0.2718999999999999,
           "ci95_hi": 1.052,
-          "p_raw": 0.003337002750012134,
-          "p_holm": 0.006674005500024268
+          "p_raw": 0.003337002750012133,
+          "p_holm": 0.006674005500024266
         },
         "A-C": {
           "pair": "A-C",
@@ -1230,8 +1230,8 @@
           "rank_biserial": 0.7423469387755102,
           "ci95_lo": 0.7839999999999998,
           "ci95_hi": 1.5719999999999998,
-          "p_raw": 7.534117851659227e-06,
-          "p_holm": 2.260235355497768e-05
+          "p_raw": 7.534117851659229e-06,
+          "p_holm": 2.2602353554977685e-05
         }
       },
       "repeated_work": {
@@ -1243,8 +1243,8 @@
           "rank_biserial": -0.2635294117647059,
           "ci95_lo": -0.0565408,
           "ci95_hi": 0.004608699999999988,
-          "p_raw": 0.1048526667093512,
-          "p_holm": 0.2097053334187024
+          "p_raw": 0.10485266670935121,
+          "p_holm": 0.20970533341870243
         },
         "B-C": {
           "pair": "B-C",
@@ -1289,8 +1289,8 @@
           "rank_biserial": 0.48582995951417,
           "ci95_lo": 0.044,
           "ci95_hi": 0.22400000000000003,
-          "p_raw": 0.008480913581717086,
-          "p_holm": 0.02544274074515126
+          "p_raw": 0.008480913581717087,
+          "p_holm": 0.025442740745151262
         },
         "A-C": {
           "pair": "A-C",
@@ -1571,7 +1571,7 @@
     "latency_corr": {
       "total_tokens": {
         "pooled_rho": 0.8290673604089867,
-        "pooled_p": 4.9710569528987516e-191,
+        "pooled_p": 4.971056952898775e-191,
         "pooled_ci": [
           0.7975593207716453,
           0.8571954666888856
@@ -1584,7 +1584,7 @@
       },
       "input_tokens": {
         "pooled_rho": 0.8017822866350055,
-        "pooled_p": 2.1106311379942137e-169,
+        "pooled_p": 2.1106311379941892e-169,
         "pooled_ci": [
           0.7654880191118553,
           0.833550741356959
@@ -1597,7 +1597,7 @@
       },
       "output_tokens": {
         "pooled_rho": 0.8074449685662315,
-        "pooled_p": 1.3282674433644135e-173,
+        "pooled_p": 1.3282674433644277e-173,
         "pooled_ci": [
           0.7779430009369318,
           0.8341216101884628
@@ -1669,7 +1669,7 @@
       "Llama_A": 0.452,
       "Llama_C": 0.392,
       "Llama_A-C_meddiff": 0.0,
-      "Llama_A-C_holm": 0.3650004034024992,
+      "Llama_A-C_holm": 0.3650004034024996,
       "A-C_replication": "N/A (no significant Qwen A-C effect to replicate)"
     },
     {
@@ -1753,7 +1753,7 @@
       "Llama_A": 10.772,
       "Llama_C": 11.948,
       "Llama_A-C_meddiff": 1.1,
-      "Llama_A-C_holm": 2.047038116095691e-05,
+      "Llama_A-C_holm": 2.0470381160956905e-05,
       "A-C_replication": "N/A (no significant Qwen A-C effect to replicate)"
     },
     {
@@ -1765,7 +1765,7 @@
       "Llama_A": 7.772,
       "Llama_C": 8.948,
       "Llama_A-C_meddiff": 1.1,
-      "Llama_A-C_holm": 2.260235355497768e-05,
+      "Llama_A-C_holm": 2.2602353554977685e-05,
       "A-C_replication": "N/A (no significant Qwen A-C effect to replicate)"
     },
     {
@@ -1812,7 +1812,7 @@
       "qwen_holm": 1.0,
       "qwen_rb": 0.067,
       "llama_A-C_med": 0.0,
-      "llama_holm": 0.3650004034024992,
+      "llama_holm": 0.3650004034024996,
       "llama_rb": -0.257,
       "verdict": "N/A (no significant Qwen A-C effect to replicate)"
     },
@@ -1862,7 +1862,7 @@
       "qwen_holm": 1.0,
       "qwen_rb": -0.008,
       "llama_A-C_med": 1.1,
-      "llama_holm": 2.047038116095691e-05,
+      "llama_holm": 2.0470381160956905e-05,
       "llama_rb": 0.746,
       "verdict": "N/A (no significant Qwen A-C effect to replicate)"
     },
@@ -1872,7 +1872,7 @@
       "qwen_holm": 1.0,
       "qwen_rb": -0.004,
       "llama_A-C_med": 1.1,
-      "llama_holm": 2.260235355497768e-05,
+      "llama_holm": 2.2602353554977685e-05,
       "llama_rb": 0.742,
       "verdict": "N/A (no significant Qwen A-C effect to replicate)"
     },
