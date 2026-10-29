@@ -1,0 +1,31 @@
+# Track B — cross-model replication on Mistral 7B. Same design as config/experiment_trackB.yaml;
+# only the model, its tokenizer-sized padding (model_tag), and the output namespace differ.
+experiment_version: trackB
+
+tasks_path: data/tasks_trackB.jsonl
+out_dir: results/trackB_mistral
+pilot_dir: results/trackB_mistral_pilot
+
+model: mistral:7b
+model_tag: mistral_7b          # -> uses config/prompts/pad_trackB_mistral_7b_D{D}_{role}.txt
+ollama_url: http://localhost:11434/api/chat
+tokenizer_url: http://localhost:11434/api/chat
+temperature: 0.7
+top_p: 0.9
+num_ctx: 16384
+num_predict: 1024
+max_tool_iters: 4
+request_timeout_s: 1800
+
+conditions:
+  - generalist
+  - specialized_length_matched
+
+depths: [3, 7]
+runs_per_task: 3              # 480 runs, matched to Qwen
+seeds: [11, 22, 33, 44, 55]
+
+schedule_seed: 20261022
+
+pilot_task_ids: [TB-K2-00, TB-K2-01, TB-K2-02, TB-K4-00, TB-K4-01, TB-K4-02]
+pilot_runs_per_task: 1

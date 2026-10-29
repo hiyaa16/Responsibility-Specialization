@@ -1,0 +1,5 @@
+RESPONSIBILITY — EXTRACTION / NORMALIZATION:
+From the material available to you, isolate the specific named quantities and relationships that
+the task actually requires, and discard irrelevant or distractor facts. Restate each needed quantity
+in a clean, unambiguous form (name, value, and unit) so the next agent works only from the relevant
+evidence. Do not plan or compute the solution — your job is to produce a clean, de-noised fact set.

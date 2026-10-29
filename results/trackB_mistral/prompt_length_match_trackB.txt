@@ -1,0 +1,18 @@
+TRACK B PROMPT-LENGTH MATCHING REPORT  (model=mistral:7b, tag=mistral_7b)
+Tokenizer: mistral:7b via Ollama prompt_eval_count.  Tolerance +/-2%
+
+=== depth 3: generalist per-agent budget = 547 tok (full) ===
+  pad_trackB_mistral_7b_D3_retrieve.txt  achieved=547 (target 547) OK  sha=1d2594f64cd4a49b
+  pad_trackB_mistral_7b_D3_solve.txt  achieved=547 (target 547) OK  sha=ff0d8cb0876b6698
+  pad_trackB_mistral_7b_D3_verify.txt  achieved=547 (target 547) OK  sha=376a96af680e5db0
+
+=== depth 7: generalist per-agent budget = 951 tok (full) ===
+  pad_trackB_mistral_7b_D7_retrieve.txt  achieved=951 (target 951) OK  sha=a8eb0f9a4fbe1285
+  pad_trackB_mistral_7b_D7_extract.txt  achieved=951 (target 951) OK  sha=39231b016f176b2d
+  pad_trackB_mistral_7b_D7_plan.txt  achieved=951 (target 951) OK  sha=2fbb8a19db9da8b3
+  pad_trackB_mistral_7b_D7_solveA.txt  achieved=951 (target 951) OK  sha=ba6783ad8e8886be
+  pad_trackB_mistral_7b_D7_solveB.txt  achieved=951 (target 951) OK  sha=e2674aa54b297b6b
+  pad_trackB_mistral_7b_D7_aggregate.txt  achieved=951 (target 951) OK  sha=43fbfd0c3ee094a0
+  pad_trackB_mistral_7b_D7_verify.txt  achieved=951 (target 951) OK  sha=8b225055f56d16ab
+
+RESULT: ALL WITHIN TOLERANCE

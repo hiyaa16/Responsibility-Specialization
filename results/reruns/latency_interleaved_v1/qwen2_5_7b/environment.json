@@ -1,0 +1,10 @@
+{
+  "available_memory_bytes": null,
+  "captured_at": "2026-10-22T09:48:28.201560+00:00",
+  "cpu_count": 14,
+  "gpu_detection": "not inferred by runner; record local Ollama diagnostics separately",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "processor": "arm",
+  "python": "3.12.13 (main, Mar  3 2026, 12:39:30) [Clang 17.0.0 (clang-1700.6.3.2)]",
+  "total_memory_bytes": null
+}

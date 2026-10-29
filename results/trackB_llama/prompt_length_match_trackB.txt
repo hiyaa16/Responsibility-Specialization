@@ -1,0 +1,18 @@
+TRACK B PROMPT-LENGTH MATCHING REPORT  (model=llama3.1:8b, tag=llama31_8b)
+Tokenizer: llama3.1:8b via Ollama prompt_eval_count.  Tolerance +/-2%
+
+=== depth 3: generalist per-agent budget = 487 tok (full) ===
+  pad_trackB_llama31_8b_D3_retrieve.txt  achieved=488 (target 487) OK  sha=be965aa3f3c2e974
+  pad_trackB_llama31_8b_D3_solve.txt  achieved=487 (target 487) OK  sha=50a0968ac10c0734
+  pad_trackB_llama31_8b_D3_verify.txt  achieved=487 (target 487) OK  sha=a733b9ca8e2c969c
+
+=== depth 7: generalist per-agent budget = 843 tok (full) ===
+  pad_trackB_llama31_8b_D7_retrieve.txt  achieved=843 (target 843) OK  sha=36d2e9055e903c22
+  pad_trackB_llama31_8b_D7_extract.txt  achieved=843 (target 843) OK  sha=3fa19d35793a4102
+  pad_trackB_llama31_8b_D7_plan.txt  achieved=843 (target 843) OK  sha=36d2e9055e903c22
+  pad_trackB_llama31_8b_D7_solveA.txt  achieved=843 (target 843) OK  sha=f08ff5645896bb82
+  pad_trackB_llama31_8b_D7_solveB.txt  achieved=843 (target 843) OK  sha=35200b02576baaa7
+  pad_trackB_llama31_8b_D7_aggregate.txt  achieved=843 (target 843) OK  sha=1b8b7e14ce708393
+  pad_trackB_llama31_8b_D7_verify.txt  achieved=843 (target 843) OK  sha=22f17e62f6e85279
+
+RESULT: ALL WITHIN TOLERANCE

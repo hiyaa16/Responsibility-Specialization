@@ -1,0 +1,30 @@
+====================================================================================
+TRACK B ANALYSIS  (n_runs=480, run_dir=/Users/sumitkalra/Hiya/LLM-Specialization/responsibility-specialization/results/trackB)
+====================================================================================
+depths=[np.int64(3), np.int64(7)]  conditions=['generalist', 'specialized_length_matched']  tasks=40  reps=3
+
+Accuracy by depth x condition (run-level mean):
+  D=3: A=0.000(n=120)  C=0.000(n=120)  => A-C gap=+0.000
+  D=7: A=0.000(n=120)  C=0.000(n=120)  => A-C gap=+0.000
+
+[PRIMARY] GEE logistic  correct ~ C(cond)*depth  (cluster=task):
+    interaction condC:depthc: coef(log-OR)=+0.0000  95%CI[+nan,+nan]  p=nan
+    (positive interaction => C improves relative to A as depth increases)
+
+[BACKUP] Difference-in-differences Wilcoxon: per-task (A-C gap @D7) - (A-C gap @D3):
+    n_tasks=40 — not enough non-zero DiD values to test yet.
+
+Complexity x condition GEE  correct ~ C(cond)*K  (cluster=task):
+    interaction condC:K coef=+0.0000 p=nan
+
+Mechanism — first-handoff overlap ov_01 (A-C) by depth:
+    D=3: A=nan C=nan diff=+nan
+    D=7: A=nan C=nan diff=+nan
+
+VALIDITY:
+    D=3 A: mean per-agent sys tokens=[451.0, 451.0, 451.0] total=1353.0
+    D=3 C: mean per-agent sys tokens=[452.0, 451.0, 451.0] total=1354.0
+    D=7 A: mean per-agent sys tokens=[807.0, 807.0, 807.0, 807.0, 807.0, 807.0, 807.0] total=5649.0
+    D=7 C: mean per-agent sys tokens=[807.0, 807.0, 807.0, 807.0, 807.0, 807.0, 807.0] total=5649.0
+    truncated runs: 0 / 480
+    interleave check — Spearman(execution_order, latency)=+nan (p=nan) (near 0 => no global drift; interleaving worked)

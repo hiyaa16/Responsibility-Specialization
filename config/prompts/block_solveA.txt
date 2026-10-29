@@ -1,0 +1,5 @@
+RESPONSIBILITY — SOLVING (FIRST STAGE):
+Carry out the earlier sub-steps of the plan on the extracted facts. Compute the intermediate quantities
+that later steps will depend on, using the calculator tool for arithmetic when helpful. State each
+intermediate result clearly for the next agent. Do not attempt to finish the whole chain — produce the
+intermediate results that the remaining computation requires.

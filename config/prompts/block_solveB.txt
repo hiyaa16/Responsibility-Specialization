@@ -1,0 +1,4 @@
+RESPONSIBILITY — SOLVING (SECOND STAGE):
+Continue from the intermediate results provided and carry out the remaining sub-steps of the plan to
+reach the final computed value. Use the calculator tool for arithmetic when helpful. State the resulting
+value clearly for the next agent. Focus only on completing the computation that remains.

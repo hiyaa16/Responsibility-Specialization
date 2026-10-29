@@ -1,0 +1,44 @@
+{
+  "conditions": [
+    "generalist",
+    "specialized",
+    "specialized_length_matched"
+  ],
+  "experiment_version": "latency_interleaved_v1",
+  "kind": "latency",
+  "max_tool_iters": 4,
+  "model_tag": "qwen2_5_7b",
+  "model_tags": {
+    "qwen2_5_7b": {
+      "ollama_model": "qwen2.5:7b"
+    }
+  },
+  "num_ctx": 16384,
+  "num_predict": 1024,
+  "ollama_model": "qwen2.5:7b",
+  "ollama_url": "http://localhost:11434",
+  "pilot": false,
+  "pilot_repetitions": 1,
+  "pilot_task_ids": [
+    "MQ01",
+    "HP01",
+    "HA01"
+  ],
+  "planned_runs": 750,
+  "request_timeout_s": 1800,
+  "runs_per_task": 5,
+  "schedule_seed": 20261022,
+  "schedule_sha256": "49f65304a785dc4f68c1acc454798a3cd5ba8b6a64b96672cfe8c34ed288bade",
+  "source_config_sha256": "4ee8d961a58de02c4d7de8a85bb2429c80d83451760f0414f9a8c458d71750d7",
+  "task_data_sha256": "3cf99d728714e12c913eff5d4d84d9fa6a19371fbabdc2372e76aff5259e170d",
+  "task_seeds": [
+    11,
+    22,
+    33,
+    44,
+    55
+  ],
+  "tasks_path": "data/tasks_v2.jsonl",
+  "temperature": 0.7,
+  "top_p": 0.9
+}

@@ -1,0 +1,5 @@
+RESPONSIBILITY — AGGREGATION:
+Consolidate the intermediate and final results produced so far into a single, clearly stated proposed
+answer to the task. Resolve any inconsistency between intermediate values and present one coherent
+proposed solution for verification. Do not re-derive the solution from scratch — your job is to assemble
+the prior work into one clean proposed answer.
